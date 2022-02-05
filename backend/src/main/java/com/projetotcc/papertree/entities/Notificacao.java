@@ -1,19 +1,24 @@
 package com.projetotcc.papertree.entities;
 
-public class Notificacao {
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+public class Notificacao implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
 	private Long id;
 	private String titulo;
-	private Usuario[] usuarios;
+	private Set<Usuario> usuarios = new HashSet<>();
 	
 	public Notificacao() {
 	}
 
-	public Notificacao(Long id, String titulo, Usuario[] usuarios) {
+	public Notificacao(Long id, String titulo) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
-		this.usuarios = usuarios;
 	}
 
 	public Long getId() {
@@ -32,12 +37,8 @@ public class Notificacao {
 		this.titulo = titulo;
 	}
 
-	public Usuario[] getUsuarios() {
+	public Set<Usuario> getUsuarios() {
 		return usuarios;
-	}
-
-	public void setUsuarios(Usuario[] usuarios) {
-		this.usuarios = usuarios;
 	}
 
 	@Override

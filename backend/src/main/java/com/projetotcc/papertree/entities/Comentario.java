@@ -1,6 +1,8 @@
 package com.projetotcc.papertree.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Comentario implements Serializable {
 	
@@ -8,19 +10,20 @@ public class Comentario implements Serializable {
 	
 	private Long id;
 	private Usuario autor;
-	private Curtida[] curtidas;
+	private Set<Curtida> curtidas = new HashSet<>();
 	private String texto;
 	
 	public Comentario() {
 	}
 
-	public Comentario(Long id, Usuario autor, Curtida[] curtidas, String texto) {
+	public Comentario(Long id, Usuario autor, String texto) {
 		super();
 		this.id = id;
 		this.autor = autor;
-		this.curtidas = curtidas;
 		this.texto = texto;
 	}
+
+	
 
 	public Long getId() {
 		return id;
@@ -38,12 +41,8 @@ public class Comentario implements Serializable {
 		this.autor = autor;
 	}
 
-	public Curtida[] getCurtidas() {
+	public Set<Curtida> getCurtidas() {
 		return curtidas;
-	}
-
-	public void setCurtidas(Curtida[] curtidas) {
-		this.curtidas = curtidas;
 	}
 
 	public String getTexto() {
