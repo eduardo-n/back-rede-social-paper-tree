@@ -1,7 +1,5 @@
 package com.projetotcc.papertree.entities;
 
-import java.util.Date;
-
 public class Notificacao {
 
 	private Long id;
