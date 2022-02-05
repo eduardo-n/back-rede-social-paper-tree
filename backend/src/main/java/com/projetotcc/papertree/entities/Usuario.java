@@ -2,6 +2,8 @@ package com.projetotcc.papertree.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Usuario implements Serializable {
 
@@ -16,14 +18,14 @@ public class Usuario implements Serializable {
 	private String senha;
 	private Date dataIngresso;
 	private Boolean professor;
-	private Trabalho[] trabalhosSalvos;
-	private Notificacao[] notificacoes;
+	private Set<Trabalho> trabalhosSalvos = new HashSet<>();
+	private Set<Notificacao> notificacoes = new HashSet<>();
 	
 	public Usuario() {		
 	}
 
 	public Usuario(Long id, String nome, String email, String cpf, int matricula, String curso, String senha,
-			Date dataIngresso, Boolean professor, Trabalho[] trabalhosSalvos, Notificacao[] notificacoes) {
+			Date dataIngresso, Boolean professor) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -34,9 +36,9 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 		this.dataIngresso = dataIngresso;
 		this.professor = professor;
-		this.trabalhosSalvos = trabalhosSalvos;
-		this.notificacoes = notificacoes;
 	}
+
+	
 
 	public Long getId() {
 		return id;
@@ -110,20 +112,12 @@ public class Usuario implements Serializable {
 		this.professor = professor;
 	}
 
-	public Trabalho[] getTrabalhosSalvos() {
+	public Set<Trabalho> getTrabalhosSalvos() {
 		return trabalhosSalvos;
 	}
 
-	public void setTrabalhosSalvos(Trabalho[] trabalhosSalvos) {
-		this.trabalhosSalvos = trabalhosSalvos;
-	}
-
-	public Notificacao[] getNotificacoes() {
+	public Set<Notificacao> getNotificacoes() {
 		return notificacoes;
-	}
-
-	public void setNotificacoes(Notificacao[] notificacoes) {
-		this.notificacoes = notificacoes;
 	}
 
 	@Override

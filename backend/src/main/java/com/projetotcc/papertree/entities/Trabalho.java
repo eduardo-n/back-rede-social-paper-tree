@@ -1,7 +1,9 @@
 package com.projetotcc.papertree.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class Trabalho implements Serializable {
 
@@ -11,22 +13,23 @@ public class Trabalho implements Serializable {
 	private String titulo;
 	private String area;
 	private String descricao;
-	private Usuario[] autores;
+	private Set<Usuario> autores = new HashSet<>();
 	private Usuario orientador;
 	
 	public Trabalho() {
 	}
 	
-	public Trabalho(Long id, String titulo, String area, String descricao, Usuario[] autores, Usuario orientador) {
+	public Trabalho(Long id, String titulo, String area, String descricao, Usuario orientador) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.area = area;
 		this.descricao = descricao;
-		this.autores = autores;
 		this.orientador = orientador;
 	}
 	
+	
+
 	public Long getId() {
 		return id;
 	}
@@ -59,12 +62,8 @@ public class Trabalho implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public Usuario[] getAutores() {
+	public Set<Usuario> getAutores() {
 		return autores;
-	}
-
-	public void setAutores(Usuario[] autores) {
-		this.autores = autores;
 	}
 
 	public Usuario getOrientador() {

@@ -1,7 +1,9 @@
 package com.projetotcc.papertree.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class Postagem implements Serializable{
 
@@ -9,19 +11,19 @@ public class Postagem implements Serializable{
 	
 	private Long id;
 	private Trabalho trabalho;
-	private Comentario[] comentarios;
-	private Curtida[] curtida;
+	private Set<Comentario> comentarios = new HashSet<>();
+	private Set<Curtida> curtidas = new HashSet<>();
 	
 	public Postagem() {
 	}
 	
-	public Postagem(Long id, Trabalho trabalho, Comentario[] comentarios, Curtida[] curtida) {
+	public Postagem(Long id, Trabalho trabalho) {
 		super();
 		this.id = id;
 		this.trabalho = trabalho;
-		this.comentarios = comentarios;
-		this.curtida = curtida;
 	}
+
+	
 
 	public Long getId() {
 		return id;
@@ -39,20 +41,12 @@ public class Postagem implements Serializable{
 		this.trabalho = trabalho;
 	}
 
-	public Comentario[] getComentarios() {
+	public Set<Comentario> getComentarios() {
 		return comentarios;
 	}
 
-	public void setComentarios(Comentario[] comentarios) {
-		this.comentarios = comentarios;
-	}
-
-	public Curtida[] getCurtida() {
-		return curtida;
-	}
-
-	public void setCurtida(Curtida[] curtida) {
-		this.curtida = curtida;
+	public Set<Curtida> getCurtidas() {
+		return curtidas;
 	}
 
 	@Override
