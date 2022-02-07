@@ -4,14 +4,34 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tb_comentario")
 public class Comentario implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Usuario autor;
-	private Set<Curtida> curtidas = new HashSet<>();
+	
 	private String texto;
+	
+	@OneToOne
+    @JoinColumn(name ="usuario_id")
+	private Usuario autor;
+	
+	@OneToMany
+    @JoinColumn(name ="curtida_id")
+	private Set<Curtida> curtidas = new HashSet<>();
 	
 	public Comentario() {
 	}
@@ -22,8 +42,6 @@ public class Comentario implements Serializable {
 		this.autor = autor;
 		this.texto = texto;
 	}
-
-	
 
 	public Long getId() {
 		return id;
