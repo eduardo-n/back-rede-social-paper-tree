@@ -5,15 +5,35 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tb_trabalho")
 public class Trabalho implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String titulo;
 	private String area;
 	private String descricao;
+	
+	@OneToMany
+    @JoinColumn(name ="usuario_autor_id")
 	private Set<Usuario> autores = new HashSet<>();
+	
+	@OneToOne
+    @JoinColumn(name ="usuario_orientador_id")
 	private Usuario orientador;
 	
 	public Trabalho() {

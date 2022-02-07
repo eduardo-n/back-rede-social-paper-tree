@@ -4,13 +4,32 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity(name = "Notificacao")
+@Table(name = "tb_notificacao")
 public class Notificacao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String titulo;
-	private Set<Usuario> usuarios = new HashSet<>();
+
+	@OneToMany(
+			mappedBy = "notificacao",
+			cascade = CascadeType.ALL,
+			orphanRemoval = true
+	)
+    private Set<UsuarioNotificacao> usuarioNotificacao = new HashSet<UsuarioNotificacao>();
 	
 	public Notificacao() {
 	}
@@ -37,8 +56,8 @@ public class Notificacao implements Serializable {
 		this.titulo = titulo;
 	}
 
-	public Set<Usuario> getUsuarios() {
-		return usuarios;
+	public Set<UsuarioNotificacao> getUsuarioNotificacao() {
+		return usuarioNotificacao;
 	}
 
 	@Override

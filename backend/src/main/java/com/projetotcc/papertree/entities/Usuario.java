@@ -5,11 +5,27 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity(name = "Usuario")
+@Table(name = "tb_usuario")
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String nome;
 	private String email;
 	private String cpf;
@@ -18,8 +34,25 @@ public class Usuario implements Serializable {
 	private String senha;
 	private Date dataIngresso;
 	private Boolean professor;
+	
+	@ManyToMany
+	@JoinTable(name = "tb_usuario_trabalho",
+		joinColumns = @JoinColumn(name = "usuario_id"),
+		inverseJoinColumns = @JoinColumn(name = "trabalho_id"))
+	private Set<Trabalho> trabalho = new HashSet<>();
+	
+	@ManyToMany
+	@JoinTable(name = "tb_usuario_trabalhos_salvos",
+		joinColumns = @JoinColumn(name = "usuario_id"),
+		inverseJoinColumns = @JoinColumn(name = "trabalho_salvo_id"))
 	private Set<Trabalho> trabalhosSalvos = new HashSet<>();
-	private Set<Notificacao> notificacoes = new HashSet<>();
+	
+	@OneToMany(
+	        mappedBy = "usuario",
+	        cascade = CascadeType.ALL,
+	        orphanRemoval = true
+	    )
+    private Set<UsuarioNotificacao> usuarioNotificacao = new HashSet<UsuarioNotificacao>();
 	
 	public Usuario() {		
 	}
@@ -37,8 +70,6 @@ public class Usuario implements Serializable {
 		this.dataIngresso = dataIngresso;
 		this.professor = professor;
 	}
-
-	
 
 	public Long getId() {
 		return id;
@@ -116,9 +147,14 @@ public class Usuario implements Serializable {
 		return trabalhosSalvos;
 	}
 
-	public Set<Notificacao> getNotificacoes() {
-		return notificacoes;
+	public Set<UsuarioNotificacao> getUsuarioNotificacao() {
+		return usuarioNotificacao;
 	}
+
+	public Set<Trabalho> getTrabalho() {
+		return trabalho;
+	}
+
 
 	@Override
 	public int hashCode() {
