@@ -1,9 +1,9 @@
 package com.projetotcc.papertree.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -39,20 +39,20 @@ public class Usuario implements Serializable {
 	@JoinTable(name = "tb_usuario_trabalho",
 		joinColumns = @JoinColumn(name = "usuario_id"),
 		inverseJoinColumns = @JoinColumn(name = "trabalho_id"))
-	private Set<Trabalho> trabalho = new HashSet<>();
+	private List<Trabalho> trabalho = new ArrayList<>();
 	
 	@ManyToMany
 	@JoinTable(name = "tb_usuario_trabalhos_salvos",
 		joinColumns = @JoinColumn(name = "usuario_id"),
 		inverseJoinColumns = @JoinColumn(name = "trabalho_salvo_id"))
-	private Set<Trabalho> trabalhosSalvos = new HashSet<>();
+	private List<Trabalho> trabalhosSalvos = new ArrayList<>();
 	
 	@OneToMany(
 	        mappedBy = "usuario",
 	        cascade = CascadeType.ALL,
 	        orphanRemoval = true
 	    )
-    private Set<UsuarioNotificacao> usuarioNotificacao = new HashSet<UsuarioNotificacao>();
+    private List<UsuarioNotificacao> usuarioNotificacao = new ArrayList<UsuarioNotificacao>();
 	
 	public Usuario() {		
 	}
@@ -143,15 +143,15 @@ public class Usuario implements Serializable {
 		this.professor = professor;
 	}
 
-	public Set<Trabalho> getTrabalhosSalvos() {
+	public List<Trabalho> getTrabalhosSalvos() {
 		return trabalhosSalvos;
 	}
 
-	public Set<UsuarioNotificacao> getUsuarioNotificacao() {
+	public List<UsuarioNotificacao> getUsuarioNotificacao() {
 		return usuarioNotificacao;
 	}
 
-	public Set<Trabalho> getTrabalho() {
+	public List<Trabalho> getTrabalho() {
 		return trabalho;
 	}
 
