@@ -22,9 +22,9 @@ public class UsuarioDTO implements Serializable{
 	private Date dataIngresso;
 	private Boolean professor;
 	
-	//private List<TrabalhoDTO> trabalho = new ArrayList<>();
+	private List<TrabalhoDTO> trabalho = new ArrayList<>();
 	
-	//private List<TrabalhoDTO> trabalhosSalvos = new ArrayList<>();
+	private List<TrabalhoDTO> trabalhosSalvos = new ArrayList<>();
 	
 	public UsuarioDTO() {
 	}
@@ -54,8 +54,8 @@ public class UsuarioDTO implements Serializable{
 		this.senha = entity.getSenha();
 		this.dataIngresso = entity.getDataIngresso();
 		this.professor = entity.getProfessor();
-		//trabalho = entity.getTrabalho().stream().map(x -> new UsuarioDTO(x)).collect(Collectors.toList());
-		//trabalhosSalvos = entity.getTrabalhosSalvos().stream().map(x -> new UsuarioDTO(x)).collect(Collectors.toList());
+		trabalho = entity.getTrabalho().stream().map(x -> new TrabalhoDTO(x)).collect(Collectors.toList());
+		trabalhosSalvos = entity.getTrabalhosSalvos().stream().map(x -> new TrabalhoDTO(x)).collect(Collectors.toList());
 	}
 
 	public Long getId() {

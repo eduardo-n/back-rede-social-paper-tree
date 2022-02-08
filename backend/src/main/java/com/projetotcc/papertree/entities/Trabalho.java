@@ -1,9 +1,9 @@
 package com.projetotcc.papertree.entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,7 +30,7 @@ public class Trabalho implements Serializable {
 	
 	@OneToMany
     @JoinColumn(name ="usuario_autor_id")
-	private Set<Usuario> autores = new HashSet<>();
+	private List<Usuario> autores = new ArrayList<>();
 	
 	@OneToOne
     @JoinColumn(name ="usuario_orientador_id")
@@ -82,7 +82,7 @@ public class Trabalho implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public Set<Usuario> getAutores() {
+	public List<Usuario> getAutores() {
 		return autores;
 	}
 
