@@ -45,17 +45,17 @@ public class UsuarioDTO implements Serializable{
 	
 	public UsuarioDTO(Usuario entity) {
 		super();
-		this.id = entity.getId();
-		this.nome = entity.getNome();
-		this.email = entity.getEmail();
-		this.cpf = entity.getCpf();
-		this.matricula = entity.getMatricula();
-		this.curso = entity.getCurso();
-		this.senha = entity.getSenha();
-		this.dataIngresso = entity.getDataIngresso();
-		this.professor = entity.getProfessor();
+		id = entity.getId();
+		nome = entity.getNome();
+		email = entity.getEmail();
+		cpf = entity.getCpf();
+		matricula = entity.getMatricula();
+		curso = entity.getCurso();
+		senha = entity.getSenha();
+		dataIngresso = entity.getDataIngresso();
+		professor = entity.getProfessor();
 		//this.trabalho = entity.getTrabalho().stream().map(x -> new TrabalhoDTO(x)).collect(Collectors.toList());
-		this.trabalhosSalvos = entity.getTrabalhosSalvos().stream().map(x -> new TrabalhoDTO(x)).collect(Collectors.toList());
+		trabalhosSalvos = entity.getTrabalhosSalvos().stream().map(x -> new TrabalhoDTO(x)).collect(Collectors.toList());
 	}
 
 	public Long getId() {

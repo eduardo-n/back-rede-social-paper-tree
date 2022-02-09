@@ -36,7 +36,7 @@ public class Comentario implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "postagem_fk")
 	private Postagem postagem;
-	
+
 	public Comentario() {
 	}
 
@@ -63,16 +63,24 @@ public class Comentario implements Serializable {
 		this.autor = autor;
 	}
 
-	public Set<Curtida> getCurtidas() {
-		return curtidas;
-	}
-
 	public String getTexto() {
 		return texto;
 	}
 
 	public void setTexto(String texto) {
 		this.texto = texto;
+	}
+	
+	public Postagem getPostagem() {
+		return postagem;
+	}
+
+	public void setPostagem(Postagem postagem) {
+		this.postagem = postagem;
+	}
+	
+	public Set<Curtida> getCurtidas() {
+		return curtidas;
 	}
 
 	@Override
