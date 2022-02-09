@@ -32,8 +32,8 @@ public class PostagemDTO implements Serializable{
 	public PostagemDTO(Postagem entity) {
 		super();
 		this.trabalho = entity.getTrabalho();
-		comentarios = entity.getComentarios().stream().map(x -> new ComentarioDTO(x)).collect(Collectors.toList());
-		curtidas = entity.getCurtidas().stream().map(x -> new CurtidaDTO(x)).collect(Collectors.toList());
+		//comentarios = entity.getComentarios().stream().map(x -> new ComentarioDTO(x)).collect(Collectors.toList());
+		//curtidas = entity.getCurtidas().stream().map(x -> new CurtidaDTO(x)).collect(Collectors.toList());
 	}
 
 	public Trabalho getTrabalho() {

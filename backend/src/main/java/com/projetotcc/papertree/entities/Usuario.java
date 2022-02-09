@@ -36,12 +36,6 @@ public class Usuario implements Serializable {
 	private Boolean professor;
 	
 	@ManyToMany
-	@JoinTable(name = "tb_usuario_trabalho",
-		joinColumns = @JoinColumn(name = "usuario_id"),
-		inverseJoinColumns = @JoinColumn(name = "trabalho_id"))
-	private List<Trabalho> trabalho = new ArrayList<>();
-	
-	@ManyToMany
 	@JoinTable(name = "tb_usuario_trabalhos_salvos",
 		joinColumns = @JoinColumn(name = "usuario_id"),
 		inverseJoinColumns = @JoinColumn(name = "trabalho_salvo_id"))
@@ -149,10 +143,6 @@ public class Usuario implements Serializable {
 
 	public List<UsuarioNotificacao> getUsuarioNotificacao() {
 		return usuarioNotificacao;
-	}
-
-	public List<Trabalho> getTrabalho() {
-		return trabalho;
 	}
 
 

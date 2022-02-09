@@ -10,7 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -28,8 +29,10 @@ public class Trabalho implements Serializable {
 	private String area;
 	private String descricao;
 	
-	@OneToMany
-    @JoinColumn(name ="usuario_autor_id")
+	@ManyToMany
+	@JoinTable(name = "tb_trabalho_usuario",
+		joinColumns = @JoinColumn(name = "trabalho_fk"),
+		inverseJoinColumns = @JoinColumn(name = "usuario_fk"))
 	private List<Usuario> autores = new ArrayList<>();
 	
 	@OneToOne

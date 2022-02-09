@@ -28,12 +28,10 @@ public class Postagem implements Serializable{
     @JoinColumn(name ="trabalho_id")
 	private Trabalho trabalho;
 	
-	@OneToMany
-    @JoinColumn(name ="comentario_id")
+	@OneToMany(mappedBy = "postagem")
 	private Set<Comentario> comentarios = new HashSet<>();
 	
-	@OneToMany
-    @JoinColumn(name ="curtida_id")
+	@OneToMany(mappedBy = "postagem")
 	private Set<Curtida> curtidas = new HashSet<>();
 	
 	public Postagem() {
@@ -44,8 +42,6 @@ public class Postagem implements Serializable{
 		this.id = id;
 		this.trabalho = trabalho;
 	}
-
-	
 
 	public Long getId() {
 		return id;

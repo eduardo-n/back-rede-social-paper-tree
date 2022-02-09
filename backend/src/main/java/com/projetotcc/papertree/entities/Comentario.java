@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -26,12 +27,15 @@ public class Comentario implements Serializable {
 	private String texto;
 	
 	@OneToOne
-    @JoinColumn(name ="usuario_id")
+    @JoinColumn(name ="usuario_fk")
 	private Usuario autor;
 	
-	@OneToMany
-    @JoinColumn(name ="curtida_id")
+	@OneToMany(mappedBy = "comentario")
 	private Set<Curtida> curtidas = new HashSet<>();
+	
+	@ManyToOne
+	@JoinColumn(name = "postagem_fk")
+	private Postagem postagem;
 	
 	public Comentario() {
 	}

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,8 +23,16 @@ public class Curtida implements Serializable{
 	private Long id;
 	
 	@OneToOne
-    @JoinColumn(name ="usuario_id")
+    @JoinColumn(name ="usuario_fk")
 	private Usuario autor;
+	
+	@ManyToOne
+	@JoinColumn(name = "comentario_fk")
+	private Comentario comentario;
+	
+	@ManyToOne
+	@JoinColumn(name = "postagem_fk")
+	private Postagem postagem;
 	
 	public Curtida() {
 	}
