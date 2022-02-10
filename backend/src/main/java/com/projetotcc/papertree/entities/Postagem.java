@@ -25,7 +25,7 @@ public class Postagem implements Serializable{
 	private Long id;
 	
 	@OneToOne
-    @JoinColumn(name ="trabalho_id")
+    @JoinColumn(name ="trabalho_fk")
 	private Trabalho trabalho;
 	
 	@OneToMany(mappedBy = "postagem")

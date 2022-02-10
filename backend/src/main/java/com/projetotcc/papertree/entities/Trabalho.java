@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -29,14 +29,14 @@ public class Trabalho implements Serializable {
 	private String area;
 	private String descricao;
 	
-	@ManyToMany
-	@JoinTable(name = "tb_trabalho_usuario",
-		joinColumns = @JoinColumn(name = "trabalho_fk"),
-		inverseJoinColumns = @JoinColumn(name = "usuario_fk"))
+	@OneToMany(
+			mappedBy = "trabalho",
+			cascade = CascadeType.ALL,
+			orphanRemoval = true)
 	private List<Usuario> autores = new ArrayList<>();
 	
 	@OneToOne
-    @JoinColumn(name ="usuario_orientador_id")
+    @JoinColumn(name ="usuario_orientador_fk")
 	private Usuario orientador;
 	
 	public Trabalho() {
@@ -51,8 +51,6 @@ public class Trabalho implements Serializable {
 		this.orientador = orientador;
 	}
 	
-	
-
 	public Long getId() {
 		return id;
 	}

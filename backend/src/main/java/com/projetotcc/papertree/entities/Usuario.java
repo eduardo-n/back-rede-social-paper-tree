@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -35,10 +36,14 @@ public class Usuario implements Serializable {
 	private Date dataIngresso;
 	private Boolean professor;
 	
+	@ManyToOne
+	@JoinColumn(name = "trabalho_fk")
+	private Trabalho trabalho;
+	
 	@ManyToMany
 	@JoinTable(name = "tb_usuario_trabalhos_salvos",
-		joinColumns = @JoinColumn(name = "usuario_id"),
-		inverseJoinColumns = @JoinColumn(name = "trabalho_salvo_id"))
+		joinColumns = @JoinColumn(name = "usuario_fk"),
+		inverseJoinColumns = @JoinColumn(name = "trabalho_salvo_fk"))
 	private List<Trabalho> trabalhosSalvos = new ArrayList<>();
 	
 	@OneToMany(
