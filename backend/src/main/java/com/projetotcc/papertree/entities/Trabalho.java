@@ -11,8 +11,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,26 +31,21 @@ public class Trabalho implements Serializable {
 	private String area;
 	private String descricao;
 	
-	@OneToMany(
-			mappedBy = "trabalho",
-			cascade = CascadeType.ALL,
-			orphanRemoval = true)
-	private List<Usuario> autores = new ArrayList<>();
-	
-	@OneToOne
-    @JoinColumn(name ="usuario_orientador_fk")
-	private Usuario orientador;
+	@ManyToMany
+	@JoinTable(name = "tb_trabalho_contribuidores",
+		joinColumns = @JoinColumn(name = "trabalho_fk"),
+		inverseJoinColumns = @JoinColumn(name = "contribuidores_fk"))
+	private List<Usuario> contribuidores = new ArrayList<>();
 	
 	public Trabalho() {
 	}
 	
-	public Trabalho(Long id, String titulo, String area, String descricao, Usuario orientador) {
+	public Trabalho(Long id, String titulo, String area, String descricao) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.area = area;
 		this.descricao = descricao;
-		this.orientador = orientador;
 	}
 	
 	public Long getId() {
@@ -83,16 +80,8 @@ public class Trabalho implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public List<Usuario> getAutores() {
-		return autores;
-	}
-
-	public Usuario getOrientador() {
-		return orientador;
-	}
-
-	public void setOrientador(Usuario orientador) {
-		this.orientador = orientador;
+	public List<Usuario> getContribuidores() {
+		return contribuidores;
 	}
 
 	@Override
@@ -111,5 +100,4 @@ public class Trabalho implements Serializable {
 		Trabalho other = (Trabalho) obj;
 		return Objects.equals(id, other.id);
 	}
-	
 }

@@ -15,6 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity(name = "Usuario")
@@ -34,12 +35,8 @@ public class Usuario implements Serializable {
 	private String curso;
 	private String senha;
 	private Date dataIngresso;
-	private Boolean professor;
-	
-	@ManyToOne
-	@JoinColumn(name = "trabalho_fk")
-	private Trabalho trabalho;
-	
+	private TipoContribuidor tipoContribuidor;
+		
 	@ManyToMany
 	@JoinTable(name = "tb_usuario_trabalhos_salvos",
 		joinColumns = @JoinColumn(name = "usuario_fk"),
@@ -57,7 +54,7 @@ public class Usuario implements Serializable {
 	}
 
 	public Usuario(Long id, String nome, String email, String cpf, int matricula, String curso, String senha,
-			Date dataIngresso, Boolean professor) {
+			Date dataIngresso, TipoContribuidor tipoContribuidor) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -67,7 +64,7 @@ public class Usuario implements Serializable {
 		this.curso = curso;
 		this.senha = senha;
 		this.dataIngresso = dataIngresso;
-		this.professor = professor;
+		this.tipoContribuidor = tipoContribuidor;
 	}
 
 	public Long getId() {
@@ -134,12 +131,12 @@ public class Usuario implements Serializable {
 		this.dataIngresso = dataIngresso;
 	}
 
-	public Boolean getProfessor() {
-		return professor;
+	public TipoContribuidor getTipoContribuidor() {
+		return tipoContribuidor;
 	}
 
-	public void setProfessor(Boolean professor) {
-		this.professor = professor;
+	public void setTipoContribuidor(TipoContribuidor tipoContribuidor) {
+		this.tipoContribuidor = tipoContribuidor;
 	}
 
 	public List<Trabalho> getTrabalhosSalvos() {
@@ -149,7 +146,6 @@ public class Usuario implements Serializable {
 	public List<UsuarioNotificacao> getUsuarioNotificacao() {
 		return usuarioNotificacao;
 	}
-
 
 	@Override
 	public int hashCode() {

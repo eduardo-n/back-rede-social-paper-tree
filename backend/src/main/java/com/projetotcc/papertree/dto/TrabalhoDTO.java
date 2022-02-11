@@ -17,20 +17,17 @@ public class TrabalhoDTO implements Serializable{
 	private String area;
 	private String descricao;
 
-	private List<UsuarioDTO> autores = new ArrayList<>();
-	
-	private Usuario orientador;
+	private List<UsuarioDTO> contribuidores = new ArrayList<>();
 
 	public TrabalhoDTO() {
 	}
 	
-	public TrabalhoDTO(Long id, String titulo, String area, String descricao, Usuario orientador) {
+	public TrabalhoDTO(Long id, String titulo, String area, String descricao) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.area = area;
 		this.descricao = descricao;
-		this.orientador = orientador;
 	}
 	
 	public TrabalhoDTO(Trabalho entity) {
@@ -38,10 +35,9 @@ public class TrabalhoDTO implements Serializable{
 		titulo = entity.getTitulo();
 		area = entity.getArea();
 		descricao = entity.getDescricao();
-		orientador = entity.getOrientador();
-		autores = entity.getAutores().stream().map(x -> new UsuarioDTO(x)).collect(Collectors.toList());
+		contribuidores = entity.getContribuidores().stream().map(x -> new UsuarioDTO(x)).collect(Collectors.toList());
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -74,12 +70,8 @@ public class TrabalhoDTO implements Serializable{
 		this.descricao = descricao;
 	}
 
-	public Usuario getOrientador() {
-		return orientador;
+	public List<UsuarioDTO> getContribuidores() {
+		return contribuidores;
 	}
 
-	public void setOrientador(Usuario orientador) {
-		this.orientador = orientador;
-	}
-	
 }
