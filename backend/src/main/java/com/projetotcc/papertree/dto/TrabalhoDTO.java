@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.projetotcc.papertree.entities.Postagem;
 import com.projetotcc.papertree.entities.Trabalho;
 import com.projetotcc.papertree.entities.Usuario;
 
@@ -22,14 +23,16 @@ public class TrabalhoDTO implements Serializable{
 	public TrabalhoDTO() {
 	}
 	
-	public TrabalhoDTO(Long id, String titulo, String area, String descricao) {
+	public TrabalhoDTO(Long id, String titulo, String area, String descricao, Postagem postagem) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.area = area;
 		this.descricao = descricao;
 	}
-	
+
+
+
 	public TrabalhoDTO(Trabalho entity) {
 		id = entity.getId();
 		titulo = entity.getTitulo();

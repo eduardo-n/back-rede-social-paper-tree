@@ -10,13 +10,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity(name = "Usuario")
 @Table(name = "tb_usuario")
@@ -36,13 +34,12 @@ public class Usuario implements Serializable {
 	private String senha;
 	private Date dataIngresso;
 	private TipoContribuidor tipoContribuidor;
-		
-	@ManyToMany
-	@JoinTable(name = "tb_usuario_trabalhos_salvos",
-		joinColumns = @JoinColumn(name = "usuario_fk"),
-		inverseJoinColumns = @JoinColumn(name = "trabalho_salvo_fk"))
-	private List<Trabalho> trabalhosSalvos = new ArrayList<>();
 	
+
+//	@ElementCollection(targetClass=String.class)
+//	private List<Long> trabalhosSalvos;
+
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(
 	        mappedBy = "usuario",
 	        cascade = CascadeType.ALL,
@@ -54,7 +51,8 @@ public class Usuario implements Serializable {
 	}
 
 	public Usuario(Long id, String nome, String email, String cpf, int matricula, String curso, String senha,
-			Date dataIngresso, TipoContribuidor tipoContribuidor) {
+			Date dataIngresso, TipoContribuidor tipoContribuidor,
+			List<UsuarioNotificacao> usuarioNotificacao) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -65,7 +63,10 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 		this.dataIngresso = dataIngresso;
 		this.tipoContribuidor = tipoContribuidor;
+		this.usuarioNotificacao = usuarioNotificacao;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -98,7 +99,6 @@ public class Usuario implements Serializable {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-
 	public int getMatricula() {
 		return matricula;
 	}
@@ -139,13 +139,13 @@ public class Usuario implements Serializable {
 		this.tipoContribuidor = tipoContribuidor;
 	}
 
-	public List<Trabalho> getTrabalhosSalvos() {
-		return trabalhosSalvos;
-	}
-
-	public List<UsuarioNotificacao> getUsuarioNotificacao() {
-		return usuarioNotificacao;
-	}
+//	public List<Long> getTrabalhosSalvos() {
+//		return trabalhosSalvos;
+//	}
+//
+//	public void setTrabalhosSalvos(List<Long> trabalhosSalvos) {
+//		this.trabalhosSalvos = trabalhosSalvos;
+//	}
 
 	@Override
 	public int hashCode() {

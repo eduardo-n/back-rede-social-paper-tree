@@ -1,7 +1,8 @@
 package com.projetotcc.papertree.entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -31,7 +32,7 @@ public class Comentario implements Serializable {
 	private Usuario autor;
 	
 	@OneToMany(mappedBy = "comentario")
-	private Set<Curtida> curtidas = new HashSet<>();
+	private List<Curtida> curtidas = new ArrayList<>();
 	
 	@ManyToOne
 	@JoinColumn(name = "postagem_fk")
@@ -71,15 +72,7 @@ public class Comentario implements Serializable {
 		this.texto = texto;
 	}
 	
-	public Postagem getPostagem() {
-		return postagem;
-	}
-
-	public void setPostagem(Postagem postagem) {
-		this.postagem = postagem;
-	}
-	
-	public Set<Curtida> getCurtidas() {
+	public List<Curtida> getCurtidas() {
 		return curtidas;
 	}
 

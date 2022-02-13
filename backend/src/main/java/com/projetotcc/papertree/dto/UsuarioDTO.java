@@ -24,13 +24,13 @@ public class UsuarioDTO implements Serializable{
 	private Date dataIngresso;
 	private TipoContribuidor tipoContribuidor;
 	
-	private List<TrabalhoDTO> trabalhosSalvos = new ArrayList<>();
+//	private List<Long> trabalhosSalvos;
 	
 	public UsuarioDTO() {
 	}
-
+	
 	public UsuarioDTO(Long id, String nome, String email, String cpf, int matricula, String curso, String senha,
-			Date dataIngresso, TipoContribuidor tipoContribuidor) {
+			Date dataIngresso, TipoContribuidor tipoContribuidor, List<Long> trabalhosSalvos) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -41,8 +41,11 @@ public class UsuarioDTO implements Serializable{
 		this.senha = senha;
 		this.dataIngresso = dataIngresso;
 		this.tipoContribuidor = tipoContribuidor;
+//		this.trabalhosSalvos = trabalhosSalvos;
 	}
-	
+
+
+
 	public UsuarioDTO(Usuario entity) {
 		super();
 		id = entity.getId();
@@ -54,7 +57,7 @@ public class UsuarioDTO implements Serializable{
 		senha = entity.getSenha();
 		dataIngresso = entity.getDataIngresso();
 		tipoContribuidor = entity.getTipoContribuidor();
-		trabalhosSalvos = entity.getTrabalhosSalvos().stream().map(x -> new TrabalhoDTO(x)).collect(Collectors.toList());
+//		trabalhosSalvos = entity.getTrabalhosSalvos();
 	}
 
 	public Long getId() {
@@ -129,7 +132,7 @@ public class UsuarioDTO implements Serializable{
 		this.tipoContribuidor = tipoContribuidor;
 	}
 
-	public List<TrabalhoDTO> getTrabalhosSalvos() {
-		return trabalhosSalvos;
-	}
+//	public List<Long> getTrabalhosSalvos() {
+//		return trabalhosSalvos;
+//	}
 }

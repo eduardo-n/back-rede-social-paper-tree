@@ -59,22 +59,6 @@ public class Curtida implements Serializable{
 		this.autor = autor;
 	}
 
-	public Comentario getComentario() {
-		return comentario;
-	}
-
-	public void setComentario(Comentario comentario) {
-		this.comentario = comentario;
-	}
-
-	public Postagem getPostagem() {
-		return postagem;
-	}
-
-	public void setPostagem(Postagem postagem) {
-		this.postagem = postagem;
-	}
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

@@ -54,5 +54,13 @@ public class PostagemDTO implements Serializable{
 	public void setTrabalho(Trabalho trabalho) {
 		this.trabalho = trabalho;
 	}
+
+	public List<ComentarioDTO> getComentarios() {
+		return comentarios;
+	}
+
+	public List<CurtidaDTO> getCurtidas() {
+		return curtidas;
+	}
 	
 }

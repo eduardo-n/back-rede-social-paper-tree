@@ -16,26 +16,23 @@ public class ComentarioDTO implements Serializable{
 	private Long id;
 	private String texto;
 	private Usuario autor;
-	private Postagem postagem;
 	
 	private List<CurtidaDTO> curtidas = new ArrayList<>();
 	
 	public ComentarioDTO() {
 	}
 
-	public ComentarioDTO(Long id, String texto, Usuario autor, Postagem postagem) {
+	public ComentarioDTO(Long id, String texto, Usuario autor) {
 		super();
 		this.id = id;
 		this.texto = texto;
 		this.autor = autor;
-		this.postagem = postagem;
 	}
 	
 	public ComentarioDTO(Comentario entity) {
 		id = entity.getId();
 		texto = entity.getTexto();
 		autor = entity.getAutor();
-		postagem = entity.getPostagem();
 		curtidas = entity.getCurtidas().stream().map(x -> new CurtidaDTO(x)).collect(Collectors.toList());
 	}
 
@@ -63,12 +60,8 @@ public class ComentarioDTO implements Serializable{
 		this.autor = autor;
 	}
 
-	public Postagem getPostagem() {
-		return postagem;
-	}
-
-	public void setPostagem(Postagem postagem) {
-		this.postagem = postagem;
-	}
+	public List<CurtidaDTO> getCurtidas() {
+		return curtidas;
+	}	
 	
 }

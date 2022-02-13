@@ -49,5 +49,4 @@ public class NotificacaoDTO implements Serializable {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-    
 }

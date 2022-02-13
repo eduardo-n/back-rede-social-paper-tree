@@ -1,11 +1,14 @@
 package com.projetotcc.papertree.entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,15 +27,15 @@ public class Postagem implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name ="trabalho_fk")
 	private Trabalho trabalho;
 	
 	@OneToMany(mappedBy = "postagem")
-	private Set<Comentario> comentarios = new HashSet<>();
+	private List<Comentario> comentarios = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "postagem")
-	private Set<Curtida> curtidas = new HashSet<>();
+	private List<Curtida> curtidas = new ArrayList<>();
 	
 	public Postagem() {
 	}
@@ -59,11 +62,11 @@ public class Postagem implements Serializable{
 		this.trabalho = trabalho;
 	}
 
-	public Set<Comentario> getComentarios() {
+	public List<Comentario> getComentarios() {
 		return comentarios;
 	}
 
-	public Set<Curtida> getCurtidas() {
+	public List<Curtida> getCurtidas() {
 		return curtidas;
 	}
 

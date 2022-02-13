@@ -13,26 +13,20 @@ public class CurtidaDTO implements Serializable{
 
 	private Long id;
 	private Usuario autor;
-	private Comentario comentario;
-	private Postagem postagem;
 	
 	public CurtidaDTO() {
 	}
 
-	public CurtidaDTO(Long id, Usuario autor, Comentario comentario, Postagem postagem) {
+	public CurtidaDTO(Long id, Usuario autor) {
 		super();
 		this.id = id;
 		this.autor = autor;
-		this.comentario = comentario;
-		this.postagem = postagem;
 	}
 	
 	public CurtidaDTO(Curtida entity) {
 		super();
 		id = entity.getId();
 		autor = entity.getAutor();
-		comentario = entity.getComentario();
-		postagem = entity.getPostagem();
 	}
 
 	public Long getId() {
