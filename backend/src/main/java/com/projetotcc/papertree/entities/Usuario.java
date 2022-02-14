@@ -6,10 +6,15 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -36,8 +41,11 @@ public class Usuario implements Serializable {
 	private TipoContribuidor tipoContribuidor;
 	
 
-//	@ElementCollection(targetClass=String.class)
-//	private List<Long> trabalhosSalvos;
+	@ManyToMany
+    @JoinTable(name = "tb_usuario_postagem_salva",
+        joinColumns = @JoinColumn(name = "usuario_fk"),
+        inverseJoinColumns = @JoinColumn(name = "postagem_salva_fk"))
+	private List<Postagem> postagensSalvas = new ArrayList<>();
 
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(
@@ -138,14 +146,10 @@ public class Usuario implements Serializable {
 	public void setTipoContribuidor(TipoContribuidor tipoContribuidor) {
 		this.tipoContribuidor = tipoContribuidor;
 	}
-
-//	public List<Long> getTrabalhosSalvos() {
-//		return trabalhosSalvos;
-//	}
-//
-//	public void setTrabalhosSalvos(List<Long> trabalhosSalvos) {
-//		this.trabalhosSalvos = trabalhosSalvos;
-//	}
+	
+	public List<Postagem> getPostagensSalvas() {
+		return postagensSalvas;
+	}
 
 	@Override
 	public int hashCode() {
