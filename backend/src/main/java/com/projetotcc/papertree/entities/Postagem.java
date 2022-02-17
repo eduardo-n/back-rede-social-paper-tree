@@ -4,9 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -30,7 +28,7 @@ public class Postagem implements Serializable{
 	@OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name ="trabalho_fk")
 	private Trabalho trabalho;
-	
+		
 	@OneToMany(mappedBy = "postagem")
 	private List<Comentario> comentarios = new ArrayList<>();
 	

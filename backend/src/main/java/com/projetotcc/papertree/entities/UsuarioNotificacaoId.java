@@ -18,7 +18,7 @@ public class UsuarioNotificacaoId implements Serializable {
 	
 	public UsuarioNotificacaoId() {}
 
-	public UsuarioNotificacaoId(Long usuarioId, Long notificacaoId) {
+	public UsuarioNotificacaoId(Long usuarioFk, Long notificacaoFk) {
 		super();
 		this.usuarioFk = usuarioFk;
 		this.notificacaoFk = notificacaoFk;

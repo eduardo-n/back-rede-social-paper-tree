@@ -6,9 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,6 +18,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "Usuario")
 @Table(name = "tb_usuario")
@@ -39,8 +39,9 @@ public class Usuario implements Serializable {
 	private String senha;
 	private Date dataIngresso;
 	private TipoContribuidor tipoContribuidor;
-	
 
+	@JsonIgnore
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToMany
     @JoinTable(name = "tb_usuario_postagem_salva",
         joinColumns = @JoinColumn(name = "usuario_fk"),
@@ -73,8 +74,6 @@ public class Usuario implements Serializable {
 		this.tipoContribuidor = tipoContribuidor;
 		this.usuarioNotificacao = usuarioNotificacao;
 	}
-
-
 
 	public Long getId() {
 		return id;
