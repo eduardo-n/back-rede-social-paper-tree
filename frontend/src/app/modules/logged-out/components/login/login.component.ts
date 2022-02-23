@@ -44,21 +44,28 @@ export class LoginComponent implements OnInit {
       )
       .subscribe((answer) => {
 
-        // if(answer){
-        //   console.log("Logado!");
-        // }else{
-        //   console.log("Dados incorretos!");
-        // }
-        this.openSnackBar('Bem-vindo, "Eduardo"!');
+        if(answer){
+          this.openSuccessSnackBar('Bem-vindo, "Eduardo"!');
+        }else{
+          this.openFailureSnackBar("Dados incorretos!");
+        }
+
         // setar a rota para área do feed
       })
     }
   }
 
-  openSnackBar(message: string) {
+  openSuccessSnackBar(message: string) {
     this.snackBar.open(message, '', {
       duration: 5000,
-      panelClass: 'snack-bar-sucess'
+      panelClass: 'success-snack-bar'
+    });
+  }
+
+  openFailureSnackBar(message: string) {
+    this.snackBar.open(message, '', {
+      duration: 5000,
+      panelClass: 'failure-snack-bar'
     });
   }
 //sessionStorage.setItem(this.usuarioModel)

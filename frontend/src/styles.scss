@@ -3,6 +3,22 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-.snack-bar-sucess{
-  background-color: aquamarine;
+snack-bar-container.success-snack-bar {
+  span {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  background-color: #00ACFF;
+  color: white;
+}
+
+snack-bar-container.failure-snack-bar {
+  span {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  background-color: #ff5656;
+  color: white;
 }

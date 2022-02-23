@@ -34,6 +34,10 @@
 
       .input-form{
         margin-bottom: 15px;
+
+        &::placeholder {
+          color: #b8b8b8;
+        }
       }
     }
   }
@@ -45,5 +49,6 @@
     display: inline-block;
   }
 }
+
 
 
