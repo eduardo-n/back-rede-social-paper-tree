@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { LoggedOutModule } from './modules/logged-out/logged-out.module';
 import { SharedModule } from './shared/shared.module';
+import { MaterialModule } from './shared/material/material.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { SharedModule } from './shared/shared.module';
     FormsModule,
     BrowserAnimationsModule,
     LoggedOutModule,
-    SharedModule
+    SharedModule,
+    MaterialModule
   ],
   providers: [],
   exports: [
