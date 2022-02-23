@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { LoggedOutModule } from './modules/logged-out/logged-out.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -15,9 +16,13 @@ import { LoggedOutModule } from './modules/logged-out/logged-out.module';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    LoggedOutModule
+    LoggedOutModule,
+    SharedModule
   ],
   providers: [],
+  exports: [
+    SharedModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,22 @@
+<div class="pg-login">
+  <div class="left-block">
+
+    <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+      <div class="form-login">
+        <div class="default-text-form">Bem-vindo</div>
+        <div class="title-form">Entre com sua conta</div>
+        <div class="default-text-form">Email</div>
+        <input type="email" formControlName="email" matInput placeholder="aluno@ufv.br" class="input-form">
+        <div class="default-text-form">Senha</div>
+        <input type="password" formControlName="password" matInput class="input-form">
+        <button mat-flat-button type="submit">Login</button>
+      </div>
+    </form>
+
+  </div>
+
+  <div class="right-block">
+
+  </div>
+</div>
+

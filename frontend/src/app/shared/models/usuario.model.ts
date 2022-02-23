@@ -1,6 +1,6 @@
 import { tipoContribuidorEnum } from "../enums/tipoContribuidor.enum";
 
-export interface Usuario{
+export interface UsuarioModel{
   id: number;
   nome: string,
   email: string,
