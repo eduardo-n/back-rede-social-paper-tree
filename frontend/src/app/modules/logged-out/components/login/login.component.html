@@ -5,6 +5,7 @@
       <div class="form-login">
         <div class="default-text-form">Bem-vindo</div>
         <div class="title-form">Entre com sua conta</div>
+
         <mat-form-field appearance="outline" class="mat-form-field">
           <mat-label>Email</mat-label>
           <input type="email" formControlName="email" matInput>
@@ -12,11 +13,23 @@
         <br/>
         <mat-form-field appearance="outline">
           <mat-label>Senha</mat-label>
-          <input type="password" formControlName="password" matInput>
+          <input [type]="hidePassword ? 'password' : 'text'" formControlName="password" matInput>
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
         </mat-form-field>
-
+        <!-- <br/>
+        <mat-checkbox class="example-margin">
+          Lembrar-me
+        </mat-checkbox>
+        <br/> -->
+        <br/>
         <div>
-          <button mat-flat-button color="primary" type="submit">Login</button>
+          <button mat-flat-button color="primary" type="submit" (click)="onSubmit()" class="btn-login">Login</button>
+        </div>
+        <div class="links">
+          <a>Cadastre-se</a>
+          <a class="forgot-psw-link">Esqueci a senha</a>
         </div>
       </div>
     </form>

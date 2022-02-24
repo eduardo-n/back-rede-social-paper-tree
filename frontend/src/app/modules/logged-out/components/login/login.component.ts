@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
 
   usuarioModel: UsuarioModel;
 
+  hidePassword: boolean = true;
+
   constructor(
     private fb: FormBuilder,
     private usuarioService: UsuariosService,
