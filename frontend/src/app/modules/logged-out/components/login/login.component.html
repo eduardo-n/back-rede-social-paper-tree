@@ -9,6 +9,7 @@
         <mat-form-field appearance="outline" class="mat-form-field">
           <mat-label>Email</mat-label>
           <input type="email" formControlName="email" matInput>
+          <mat-error error-message>Erro message here</mat-error>
         </mat-form-field>
         <br/>
         <mat-form-field appearance="outline">
@@ -28,7 +29,7 @@
           <button mat-flat-button color="primary" type="submit" (click)="onSubmit()" class="btn-login">Login</button>
         </div>
         <div class="links">
-          <a>Cadastre-se</a>
+          <a [routerLink]="['/register']">Cadastre-se</a>
           <a class="forgot-psw-link">Esqueci a senha</a>
         </div>
       </div>

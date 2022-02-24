@@ -7,10 +7,13 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MaterialModule } from 'src/app/shared/material/material.module';
+import { LoggedOutRoutingModule } from './logged-out-routing.module';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     //modules
@@ -20,7 +23,9 @@ import { MaterialModule } from 'src/app/shared/material/material.module';
     SharedModule,
     HttpClientModule,
     MatSnackBarModule,
-    MaterialModule
+    MaterialModule,
+    LoggedOutRoutingModule,
+
   ],
   exports: [
     //components
