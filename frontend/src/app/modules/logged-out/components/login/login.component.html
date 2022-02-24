@@ -5,11 +5,19 @@
       <div class="form-login">
         <div class="default-text-form">Bem-vindo</div>
         <div class="title-form">Entre com sua conta</div>
-        <div class="default-text-form">Email</div>
-        <input type="email" formControlName="email" matInput placeholder="aluno@ufv.br" class="input-form">
-        <div class="default-text-form">Senha</div>
-        <input type="password" formControlName="password" matInput class="input-form">
-        <button mat-flat-button type="submit">Login</button>
+        <mat-form-field appearance="outline" class="mat-form-field">
+          <mat-label>Email</mat-label>
+          <input type="email" formControlName="email" matInput>
+        </mat-form-field>
+        <br/>
+        <mat-form-field appearance="outline">
+          <mat-label>Senha</mat-label>
+          <input type="password" formControlName="password" matInput>
+        </mat-form-field>
+
+        <div>
+          <button mat-flat-button color="primary" type="submit">Login</button>
+        </div>
       </div>
     </form>
 

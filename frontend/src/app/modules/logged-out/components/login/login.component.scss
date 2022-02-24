@@ -12,7 +12,7 @@
     position: relative;
 
     .form-login{
-      background-color: rgb(230, 230, 230);
+      //background-color: rgb(230, 230, 230);
       width: 50%;
       height: 60%;
       left: 25%;
@@ -31,14 +31,6 @@
         font-weight: 700;
         margin-bottom: 28px;
       }
-
-      .input-form{
-        margin-bottom: 15px;
-
-        &::placeholder {
-          color: #b8b8b8;
-        }
-      }
     }
   }
 
@@ -50,5 +42,8 @@
   }
 }
 
-
-
+::ng-deep .mat-form-field {
+  .mat-input-element{
+    background-color: pink;
+  }
+}

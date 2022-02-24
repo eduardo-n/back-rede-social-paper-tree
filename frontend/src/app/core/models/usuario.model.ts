@@ -1,4 +1,4 @@
-import { tipoContribuidorEnum } from "../enums/tipoContribuidor.enum";
+import { tipoContribuidorEnum } from "../../shared/enums/tipoContribuidor.enum";
 
 export interface UsuarioModel{
   id: number;

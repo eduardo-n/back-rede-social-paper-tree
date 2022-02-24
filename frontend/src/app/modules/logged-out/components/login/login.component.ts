@@ -2,14 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuariosService } from 'src/app/core/services/usuarios/usuarios.service';
-import { UsuarioModel } from '../../../../shared/models/usuario.model'
+import { UsuarioModel } from '../../../../core/models/usuario.model'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { finalize } from 'rxjs/operators';
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
 
@@ -45,9 +47,9 @@ export class LoginComponent implements OnInit {
       .subscribe((answer) => {
 
         if(answer){
-          this.openSuccessSnackBar('Bem-vindo, "Eduardo"!');
+          this.openSnackBar('Bem-vindo, "Eduardo"!', 'success-snack-bar');
         }else{
-          this.openFailureSnackBar("Dados incorretos!");
+          this.openSnackBar("Dados incorretos!", 'failure-snack-bar');
         }
 
         // setar a rota para área do feed
@@ -55,19 +57,13 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  openSuccessSnackBar(message: string) {
+  openSnackBar(message: string, styleClass: string) {
     this.snackBar.open(message, '', {
       duration: 5000,
-      panelClass: 'success-snack-bar'
+      panelClass: styleClass
     });
   }
 
-  openFailureSnackBar(message: string) {
-    this.snackBar.open(message, '', {
-      duration: 5000,
-      panelClass: 'failure-snack-bar'
-    });
-  }
 //sessionStorage.setItem(this.usuarioModel)
 
   get email(){
