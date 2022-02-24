@@ -47,6 +47,11 @@
         font-family: $roboto;
         color: #00ACFF;
 
+        a{
+          text-decoration: none;
+          color: inherit;
+        }
+
         .forgot-psw-link{
           float: right;
         }
