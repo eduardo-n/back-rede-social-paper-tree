@@ -1,18 +1,21 @@
 package com.projetotcc.papertree.entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name = "tb_trabalho")
@@ -28,28 +31,24 @@ public class Trabalho implements Serializable {
 	private String area;
 	private String descricao;
 	
-	@OneToMany
-    @JoinColumn(name ="usuario_autor_id")
-	private Set<Usuario> autores = new HashSet<>();
-	
-	@OneToOne
-    @JoinColumn(name ="usuario_orientador_id")
-	private Usuario orientador;
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@ManyToMany
+	@JoinTable(name = "tb_trabalho_contribuidores",
+		joinColumns = @JoinColumn(name = "trabalho_fk"),
+		inverseJoinColumns = @JoinColumn(name = "contribuidores_fk"))
+	private List<Usuario> contribuidores = new ArrayList<>();
 	
 	public Trabalho() {
 	}
 	
-	public Trabalho(Long id, String titulo, String area, String descricao, Usuario orientador) {
+	public Trabalho(Long id, String titulo, String area, String descricao) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.area = area;
 		this.descricao = descricao;
-		this.orientador = orientador;
 	}
 	
-	
-
 	public Long getId() {
 		return id;
 	}
@@ -82,16 +81,8 @@ public class Trabalho implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public Set<Usuario> getAutores() {
-		return autores;
-	}
-
-	public Usuario getOrientador() {
-		return orientador;
-	}
-
-	public void setOrientador(Usuario orientador) {
-		this.orientador = orientador;
+	public List<Usuario> getContribuidores() {
+		return contribuidores;
 	}
 
 	@Override
@@ -110,5 +101,4 @@ public class Trabalho implements Serializable {
 		Trabalho other = (Trabalho) obj;
 		return Objects.equals(id, other.id);
 	}
-	
 }

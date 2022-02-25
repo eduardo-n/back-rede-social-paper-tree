@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.projetotcc.papertree.entities.TipoContribuidor;
+import com.projetotcc.papertree.entities.Trabalho;
 import com.projetotcc.papertree.entities.Usuario;
 
 public class UsuarioDTO implements Serializable{
@@ -20,17 +22,15 @@ public class UsuarioDTO implements Serializable{
 	private String curso;
 	private String senha;
 	private Date dataIngresso;
-	private Boolean professor;
+	private TipoContribuidor tipoContribuidor;
 	
-	//private List<TrabalhoDTO> trabalho = new ArrayList<>();
-	
-	//private List<TrabalhoDTO> trabalhosSalvos = new ArrayList<>();
+	private List<PostagemDTO> postagensSalvas = new ArrayList<>();
 	
 	public UsuarioDTO() {
 	}
-
+	
 	public UsuarioDTO(Long id, String nome, String email, String cpf, int matricula, String curso, String senha,
-			Date dataIngresso, Boolean professor) {
+			Date dataIngresso, TipoContribuidor tipoContribuidors) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -40,22 +40,23 @@ public class UsuarioDTO implements Serializable{
 		this.curso = curso;
 		this.senha = senha;
 		this.dataIngresso = dataIngresso;
-		this.professor = professor;
+		this.tipoContribuidor = tipoContribuidor;
 	}
-	
+
+
+
 	public UsuarioDTO(Usuario entity) {
 		super();
-		this.id = entity.getId();
-		this.nome = entity.getNome();
-		this.email = entity.getEmail();
-		this.cpf = entity.getCpf();
-		this.matricula = entity.getMatricula();
-		this.curso = entity.getCurso();
-		this.senha = entity.getSenha();
-		this.dataIngresso = entity.getDataIngresso();
-		this.professor = entity.getProfessor();
-		//trabalho = entity.getTrabalho().stream().map(x -> new UsuarioDTO(x)).collect(Collectors.toList());
-		//trabalhosSalvos = entity.getTrabalhosSalvos().stream().map(x -> new UsuarioDTO(x)).collect(Collectors.toList());
+		id = entity.getId();
+		nome = entity.getNome();
+		email = entity.getEmail();
+		cpf = entity.getCpf();
+		matricula = entity.getMatricula();
+		curso = entity.getCurso();
+		senha = entity.getSenha();
+		dataIngresso = entity.getDataIngresso();
+		tipoContribuidor = entity.getTipoContribuidor();
+		postagensSalvas = entity.getPostagensSalvas().stream().map(x -> new PostagemDTO(x)).collect(Collectors.toList());
 	}
 
 	public Long getId() {
@@ -122,13 +123,12 @@ public class UsuarioDTO implements Serializable{
 		this.dataIngresso = dataIngresso;
 	}
 
-	public Boolean getProfessor() {
-		return professor;
+	public TipoContribuidor getTipoContribuidor() {
+		return tipoContribuidor;
 	}
 
-	public void setProfessor(Boolean professor) {
-		this.professor = professor;
+	public void setTipoContribuidor(TipoContribuidor tipoContribuidor) {
+		this.tipoContribuidor = tipoContribuidor;
 	}
-	
 	
 }

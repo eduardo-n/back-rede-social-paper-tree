@@ -1,0 +1,74 @@
+@import '../../../../shared/styles/fonts';
+
+.pg-login{
+  width: 100%;
+  height: 100%;
+
+  .left-block{
+    background-color: rgb(255, 255, 255);
+    width: 50%;
+    height: 100%;
+    display: inline-block;
+    position: relative;
+
+    .form-login{
+      //background-color: rgb(230, 230, 230);
+      width: auto;
+      height: auto;
+      left: 25%;
+      top: 20%;
+      position: absolute;
+
+      .default-text-form{
+        font-size: 16px;
+        font-family: $roboto;
+        margin-bottom: 9px;
+      }
+
+      .title-form{
+        font-size: 30px;
+        font-family: $roboto;
+        font-weight: 700;
+        margin-bottom: 28px;
+      }
+
+      mat-form-field{
+        width: 300px;
+      }
+
+      .btn-login{
+        background-color: #00ACFF;
+        width: 300px;
+        height: 50px;
+        margin-bottom: 17px;
+      }
+
+      .links{
+        font-family: $roboto;
+        color: #00ACFF;
+
+        a{
+          text-decoration: none;
+          color: inherit;
+        }
+
+        .forgot-psw-link{
+          float: right;
+        }
+      }
+    }
+  }
+
+  .right-block{
+    background-color: #00ACFF;
+    width: 50%;
+    height: 100%;
+    display: inline-block;
+  }
+}
+
+::ng-deep .mat-form-field {
+  .mat-input-element{
+    background-color: pink;
+  }
+}

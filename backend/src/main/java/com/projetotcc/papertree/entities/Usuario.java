@@ -16,6 +16,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity(name = "Usuario")
 @Table(name = "tb_usuario")
 public class Usuario implements Serializable {
@@ -33,20 +38,17 @@ public class Usuario implements Serializable {
 	private String curso;
 	private String senha;
 	private Date dataIngresso;
-	private Boolean professor;
-	
+	private TipoContribuidor tipoContribuidor;
+
+	@JsonIgnore
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToMany
-	@JoinTable(name = "tb_usuario_trabalho",
-		joinColumns = @JoinColumn(name = "usuario_id"),
-		inverseJoinColumns = @JoinColumn(name = "trabalho_id"))
-	private List<Trabalho> trabalho = new ArrayList<>();
-	
-	@ManyToMany
-	@JoinTable(name = "tb_usuario_trabalhos_salvos",
-		joinColumns = @JoinColumn(name = "usuario_id"),
-		inverseJoinColumns = @JoinColumn(name = "trabalho_salvo_id"))
-	private List<Trabalho> trabalhosSalvos = new ArrayList<>();
-	
+    @JoinTable(name = "tb_usuario_postagem_salva",
+        joinColumns = @JoinColumn(name = "usuario_fk"),
+        inverseJoinColumns = @JoinColumn(name = "postagem_salva_fk"))
+	private List<Postagem> postagensSalvas = new ArrayList<>();
+
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(
 	        mappedBy = "usuario",
 	        cascade = CascadeType.ALL,
@@ -58,7 +60,8 @@ public class Usuario implements Serializable {
 	}
 
 	public Usuario(Long id, String nome, String email, String cpf, int matricula, String curso, String senha,
-			Date dataIngresso, Boolean professor) {
+			Date dataIngresso, TipoContribuidor tipoContribuidor,
+			List<UsuarioNotificacao> usuarioNotificacao) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -68,7 +71,8 @@ public class Usuario implements Serializable {
 		this.curso = curso;
 		this.senha = senha;
 		this.dataIngresso = dataIngresso;
-		this.professor = professor;
+		this.tipoContribuidor = tipoContribuidor;
+		this.usuarioNotificacao = usuarioNotificacao;
 	}
 
 	public Long getId() {
@@ -102,7 +106,6 @@ public class Usuario implements Serializable {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-
 	public int getMatricula() {
 		return matricula;
 	}
@@ -135,26 +138,17 @@ public class Usuario implements Serializable {
 		this.dataIngresso = dataIngresso;
 	}
 
-	public Boolean getProfessor() {
-		return professor;
+	public TipoContribuidor getTipoContribuidor() {
+		return tipoContribuidor;
 	}
 
-	public void setProfessor(Boolean professor) {
-		this.professor = professor;
+	public void setTipoContribuidor(TipoContribuidor tipoContribuidor) {
+		this.tipoContribuidor = tipoContribuidor;
 	}
-
-	public List<Trabalho> getTrabalhosSalvos() {
-		return trabalhosSalvos;
+	
+	public List<Postagem> getPostagensSalvas() {
+		return postagensSalvas;
 	}
-
-	public List<UsuarioNotificacao> getUsuarioNotificacao() {
-		return usuarioNotificacao;
-	}
-
-	public List<Trabalho> getTrabalho() {
-		return trabalho;
-	}
-
 
 	@Override
 	public int hashCode() {

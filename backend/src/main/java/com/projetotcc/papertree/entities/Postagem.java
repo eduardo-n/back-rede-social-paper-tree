@@ -1,11 +1,12 @@
 package com.projetotcc.papertree.entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,17 +25,15 @@ public class Postagem implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToOne
-    @JoinColumn(name ="trabalho_id")
+	@OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name ="trabalho_fk")
 	private Trabalho trabalho;
+		
+	@OneToMany(mappedBy = "postagem")
+	private List<Comentario> comentarios = new ArrayList<>();
 	
-	@OneToMany
-    @JoinColumn(name ="comentario_id")
-	private Set<Comentario> comentarios = new HashSet<>();
-	
-	@OneToMany
-    @JoinColumn(name ="curtida_id")
-	private Set<Curtida> curtidas = new HashSet<>();
+	@OneToMany(mappedBy = "postagem")
+	private List<Curtida> curtidas = new ArrayList<>();
 	
 	public Postagem() {
 	}
@@ -44,8 +43,6 @@ public class Postagem implements Serializable{
 		this.id = id;
 		this.trabalho = trabalho;
 	}
-
-	
 
 	public Long getId() {
 		return id;
@@ -63,11 +60,11 @@ public class Postagem implements Serializable{
 		this.trabalho = trabalho;
 	}
 
-	public Set<Comentario> getComentarios() {
+	public List<Comentario> getComentarios() {
 		return comentarios;
 	}
 
-	public Set<Curtida> getCurtidas() {
+	public List<Curtida> getCurtidas() {
 		return curtidas;
 	}
 

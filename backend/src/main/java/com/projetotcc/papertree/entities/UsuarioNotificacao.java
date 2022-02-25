@@ -16,11 +16,11 @@ public class UsuarioNotificacao {
 	private UsuarioNotificacaoId id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@MapsId("usuarioId")
+	@MapsId("usuarioFk")
 	private Usuario usuario;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@MapsId("notificacaoId")
+	@MapsId("notificacaoFk")
 	private Notificacao notificacao;
 	
 	@Column(name = "visualizado")

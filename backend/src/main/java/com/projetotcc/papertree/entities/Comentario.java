@@ -1,14 +1,15 @@
 package com.projetotcc.papertree.entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -26,13 +27,16 @@ public class Comentario implements Serializable {
 	private String texto;
 	
 	@OneToOne
-    @JoinColumn(name ="usuario_id")
+    @JoinColumn(name ="usuario_fk")
 	private Usuario autor;
 	
-	@OneToMany
-    @JoinColumn(name ="curtida_id")
-	private Set<Curtida> curtidas = new HashSet<>();
+	@OneToMany(mappedBy = "comentario")
+	private List<Curtida> curtidas = new ArrayList<>();
 	
+	@ManyToOne
+	@JoinColumn(name = "postagem_fk")
+	private Postagem postagem;
+
 	public Comentario() {
 	}
 
@@ -59,16 +63,16 @@ public class Comentario implements Serializable {
 		this.autor = autor;
 	}
 
-	public Set<Curtida> getCurtidas() {
-		return curtidas;
-	}
-
 	public String getTexto() {
 		return texto;
 	}
 
 	public void setTexto(String texto) {
 		this.texto = texto;
+	}
+	
+	public List<Curtida> getCurtidas() {
+		return curtidas;
 	}
 
 	@Override

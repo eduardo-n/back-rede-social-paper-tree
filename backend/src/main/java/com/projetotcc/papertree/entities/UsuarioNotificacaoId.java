@@ -10,34 +10,34 @@ public class UsuarioNotificacaoId implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "usuario_id")
-    private Long usuarioId;
+	@Column(name = "usuario_fk")
+    private Long usuarioFk;
 	
-	@Column(name = "notificacao_id")
-    private Long notificacaoId;
+	@Column(name = "notificacao_fk")
+    private Long notificacaoFk;
 	
 	public UsuarioNotificacaoId() {}
 
-	public UsuarioNotificacaoId(Long usuarioId, Long notificacaoId) {
+	public UsuarioNotificacaoId(Long usuarioFk, Long notificacaoFk) {
 		super();
-		this.usuarioId = usuarioId;
-		this.notificacaoId = notificacaoId;
+		this.usuarioFk = usuarioFk;
+		this.notificacaoFk = notificacaoFk;
 	}
 
-	public Long getUsuarioId() {
-		return usuarioId;
+	public Long getUsuarioFk() {
+		return usuarioFk;
 	}
 
-	public Long getNotificacaoId() {
-		return notificacaoId;
+	public Long getNotificacaoFk() {
+		return notificacaoFk;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((notificacaoId == null) ? 0 : notificacaoId.hashCode());
-		result = prime * result + ((usuarioId == null) ? 0 : usuarioId.hashCode());
+		result = prime * result + ((notificacaoFk == null) ? 0 : notificacaoFk.hashCode());
+		result = prime * result + ((usuarioFk == null) ? 0 : usuarioFk.hashCode());
 		return result;
 	}
 
@@ -50,15 +50,15 @@ public class UsuarioNotificacaoId implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		UsuarioNotificacaoId other = (UsuarioNotificacaoId) obj;
-		if (notificacaoId == null) {
-			if (other.notificacaoId != null)
+		if (notificacaoFk == null) {
+			if (other.notificacaoFk != null)
 				return false;
-		} else if (!notificacaoId.equals(other.notificacaoId))
+		} else if (!notificacaoFk.equals(other.notificacaoFk))
 			return false;
-		if (usuarioId == null) {
-			if (other.usuarioId != null)
+		if (usuarioFk == null) {
+			if (other.usuarioFk != null)
 				return false;
-		} else if (!usuarioId.equals(other.usuarioId))
+		} else if (!usuarioFk.equals(other.usuarioFk))
 			return false;
 		return true;
 	}
