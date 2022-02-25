@@ -1,1 +1,51 @@
-<p>register works!</p>
+<div class="pg-register">
+  <div class="left-block">
+
+    <form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
+      <div class="form-register">
+        <div class="default-text-form">Bem-vindo</div>
+        <div class="title-form">Cadastre-se</div>
+
+        <mat-form-field appearance="outline" class="mat-form-field">
+          <mat-label>Email</mat-label>
+          <input type="email" formControlName="email" matInput>
+          <mat-error error-message>Erro message here</mat-error>
+        </mat-form-field>
+        <br/>
+        <mat-form-field appearance="outline">
+          <mat-label>Nova senha</mat-label>
+          <input [type]="hidePassword ? 'password' : 'text'" formControlName="newPassword" matInput>
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <br/>
+        <mat-form-field appearance="outline">
+          <mat-label>Confirmar senha</mat-label>
+          <input [type]="hidePassword ? 'password' : 'text'" formControlName="confirmPassword" matInput>
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <!-- <br/>
+        <mat-checkbox class="example-margin">
+          Orientador
+        </mat-checkbox>
+        <br/>
+        <br/> -->
+        <div>
+          <button mat-flat-button type="submit" (click)="onSubmit()" class="btn-register">Confirmar</button>
+        </div>
+        <div class="links">
+          <a [routerLink]="['/login']">Cancelar cadastro</a>
+        </div>
+      </div>
+    </form>
+
+  </div>
+
+  <div class="right-block">
+
+  </div>
+</div>
+

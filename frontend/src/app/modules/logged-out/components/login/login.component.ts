@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
       .subscribe((answer) => {
 
         if(answer){
-          this.openSnackBar('Bem-vindo, "Eduardo"!', 'success-snack-bar');
+          this.openSnackBar('Bem-vindo(a)!', 'success-snack-bar');
         }else{
           this.openSnackBar("Dados incorretos!", 'failure-snack-bar');
         }
@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
 
   openSnackBar(message: string, styleClass: string) {
     this.snackBar.open(message, '', {
-      duration: 5000,
+      duration: 4000,
       panelClass: styleClass
     });
   }
