@@ -72,4 +72,12 @@
   .mat-input-element{
     background-color: pink;
   }
+
+  input:focus {
+    outline: none !important;
+    border-color: #00ACFF;
+    box-shadow: 0 0 10px #719ECE;
+  }
 }
+
+
