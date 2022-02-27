@@ -11,7 +11,12 @@ export class UsuariosService {
     private httpService: HttpClient,
   ) { }
 
-  confirmLogin(email:String, senha: String){
-    return this.httpService.get('http://localhost:8080/usuarios/login/'+email+'/'+senha);
+  confirmLogin(email:String, password: String){
+    return this.httpService.get('http://localhost:8080/usuarios/login/'+email+'/'+password);
+  }
+
+  registerUser(user){
+    debugger
+    return this.httpService.post('http://localhost:8080/usuarios', user);
   }
 }

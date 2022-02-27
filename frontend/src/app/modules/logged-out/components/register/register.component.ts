@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UsuarioModel } from 'src/app/core/models/usuario.model';
+import { UserModel } from 'src/app/core/models/user.model';
 import { UsuariosService } from 'src/app/core/services/usuarios/usuarios.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register',
@@ -12,11 +13,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class RegisterComponent implements OnInit {
 
-  formRegister: FormGroup
+  isLinear = false;
+
+  formPersonal: FormGroup;
+  formCollege: FormGroup;
+  formLogon: FormGroup;
 
   sessionStorage: WindowSessionStorage
 
-  usuarioModel: UsuarioModel;
+  usuarioModel: UserModel;
 
   hidePassword: boolean = true;
 
@@ -28,33 +33,45 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.formRegister = this.fb.group({
+    this.formPersonal = this.fb.group({
+      name: [null, [Validators.required]],
+      itin: [null, [Validators.required]]
+    });
+
+    this.formCollege = this.fb.group({
+      course: [null, [Validators.required]],
+      registration: [null, [Validators.required]],
+      entryDate: [null, [Validators.required]]
+    })
+
+    this.formLogon = this.fb.group({
       email: [null, [Validators.required]],
-      newPassword: [null, [Validators.required]],
-      confirmPassword: [null, [Validators.required]]
+      password: [null, [Validators.required]]
     })
   }
 
   onSubmit(){
 
-    // if(this.formRegister.valid){
-    //   this.usuarioService.confirmLogin(this.email, this.newPassword)
-    //   .pipe(
-    //     finalize(() => {
-    //       // finaliza o carregamento
-    //     })
-    //   )
-    //   .subscribe((answer) => {
+    if(this.formPersonal.valid && this.formCollege.valid && this.formLogon.valid){
 
-    //     if(answer){
-    //       this.openSnackBar('Bem-vindo, "Eduardo"!', 'success-snack-bar');
-    //     }else{
-    //       this.openSnackBar("Dados incorretos!", 'failure-snack-bar');
-    //     }
+      debugger
+      const userDate={
+        ...this.formPersonal.value,
+        ...this.formCollege.value,
+        ...this.formLogon.value,
+      };
 
-    //     // setar a rota para área do feed
-    //   })
-    // }
+      this.usuarioService.registerUser(userDate)
+      .pipe(
+        finalize(() => {
+          // finaliza o carregamento
+        })
+      )
+      .subscribe(() => {
+
+        // setar a rota para área do feed
+      })
+    }
   }
 
   openSnackBar(message: string, styleClass: string) {
@@ -64,15 +81,15 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  get email(){
-    return this.formRegister.get('email').value;
-  }
+  // get email(){
+  //   return this.formRegister.get('email').value;
+  // }
 
-  get newPassword(){
-    return this.formRegister.get('newPassword').value;
-  }
+  // get newPassword(){
+  //   return this.formRegister.get('newPassword').value;
+  // }
 
-  get confirmPassword(){
-    return this.formRegister.get('confirmPassword').value;
-  }
+  // get confirmPassword(){
+  //   return this.formRegister.get('confirmPassword').value;
+  // }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuariosService } from 'src/app/core/services/usuarios/usuarios.service';
-import { UsuarioModel } from '../../../../core/models/usuario.model'
+import { UserModel } from '../../../../core/models/user.model'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { finalize } from 'rxjs/operators';
 import { ViewEncapsulation } from '@angular/core';
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   sessionStorage: WindowSessionStorage
 
-  usuarioModel: UsuarioModel;
+  usuarioModel: UserModel;
 
   hidePassword: boolean = true;
 

@@ -1,6 +1,6 @@
 import { tipoContribuidorEnum } from "../../shared/enums/tipoContribuidor.enum";
 
-export interface UsuarioModel{
+export interface UserModel{
   id: number;
   nome: string,
   email: string,
