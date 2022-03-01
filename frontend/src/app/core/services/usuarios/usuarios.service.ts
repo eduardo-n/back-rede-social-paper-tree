@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UserModel } from '../../models/user.model';
 
 
 @Injectable({
@@ -16,7 +17,6 @@ export class UsuariosService {
   }
 
   registerUser(user){
-    debugger
-    return this.httpService.post('http://localhost:8080/usuarios', user);
+    return this.httpService.post('http://localhost:8080/usuarios/inserir', user);
   }
 }

@@ -12,15 +12,15 @@
             <ng-template matStepLabel>Dados pessoais</ng-template>
             <mat-form-field appearance="outline">
               <mat-label>Nome</mat-label>
-              <input matInput placeholder="Nome Completo" formControlName="name" required>
+              <input matInput placeholder="Nome Completo" formControlName="nome" required>
             </mat-form-field>
             <br/>
             <mat-form-field appearance="outline">
               <mat-label>CPF</mat-label>
-              <input matInput placeholder="CPF" formControlName="itin" required>
+              <input matInput placeholder="CPF" formControlName="cpf" required>
             </mat-form-field>
             <div>
-              <button mat-button matStepperNext>Next</button>
+              <button mat-button matStepperNext>Avançar</button>
             </div>
           </form>
         </mat-step>
@@ -30,21 +30,21 @@
             <ng-template matStepLabel>Dados universitários</ng-template>
             <mat-form-field appearance="outline">
               <mat-label>Curso</mat-label>
-              <input matInput formControlName="course" placeholder="Curso" required>
+              <input matInput formControlName="curso" placeholder="Curso" required>
             </mat-form-field>
             <br/>
             <mat-form-field appearance="outline">
               <mat-label>Matrícula</mat-label>
-              <input matInput formControlName="registration" placeholder="Matrícula" required>
+              <input matInput formControlName="matricula" placeholder="Matrícula" required>
             </mat-form-field>
             <br/>
-            <mat-form-field appearance="outline">
+            <!-- <mat-form-field appearance="outline">
               <mat-label>Data de ingresso</mat-label>
               <input matInput formControlName="entryDate" placeholder="Data de ingresso" required>
-            </mat-form-field>
+            </mat-form-field> -->
             <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
+              <button mat-button matStepperPrevious>Voltar</button>
+              <button mat-button matStepperNext>Avançar</button>
             </div>
           </form>
         </mat-step>
@@ -59,7 +59,7 @@
             <br/>
             <mat-form-field appearance="outline">
               <mat-label>Senha</mat-label>
-              <input matInput placeholder="Senha" formControlName="password" required>
+              <input matInput placeholder="Senha" formControlName="senha" required>
             </mat-form-field>
             <br/>
             <mat-form-field appearance="outline">
