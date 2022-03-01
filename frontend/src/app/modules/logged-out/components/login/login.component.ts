@@ -32,30 +32,31 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.formLogin = this.fb.group({
-      email: [null, [Validators.required]],
+      email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required]]
     })
   }
 
-  onSubmit(){
+  onSubmit() {
 
-    if(this.formLogin.valid){
+    if (this.formLogin.valid) {
       this.usuarioService.confirmLogin(this.email, this.password)
-      .pipe(
-        finalize(() => {
-          // finaliza o carregamento
+        .pipe(
+          finalize(() => {
+            // finaliza o carregamento
+          })
+        )
+        .subscribe((answer) => {
+
+          if (answer) {
+            this.openSnackBar('Bem-vindo(a)!', 'success-snack-bar');
+            //sessionStorage.setItem(this.usuarioModel)
+          } else {
+            this.openSnackBar("Dados incorretos!", 'failure-snack-bar');
+          }
+
+          // setar a rota para área do feed
         })
-      )
-      .subscribe((answer) => {
-
-        if(answer){
-          this.openSnackBar('Bem-vindo(a)!', 'success-snack-bar');
-        }else{
-          this.openSnackBar("Dados incorretos!", 'failure-snack-bar');
-        }
-
-        // setar a rota para área do feed
-      })
     }
   }
 
@@ -66,13 +67,21 @@ export class LoginComponent implements OnInit {
     });
   }
 
-//sessionStorage.setItem(this.usuarioModel)
+  getErrors(controlName) {
 
-  get email(){
+
+
+    if (this.formLogin.get(controlName).hasError('required')) {
+      return '* Campo obrigatório';
+    }
+    return '';
+  }
+
+  get email() {
     return this.formLogin.get('email').value;
   }
 
-  get password(){
+  get password() {
     return this.formLogin.get('password').value;
   }
 }
