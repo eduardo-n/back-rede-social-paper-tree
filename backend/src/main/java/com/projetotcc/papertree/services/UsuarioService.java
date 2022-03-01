@@ -35,4 +35,13 @@ public class UsuarioService {
 		}
 		return true;
 	}
+	
+	@Transactional
+	public UsuarioDTO insert(UsuarioDTO dto){
+		Usuario usuario = new Usuario(null, dto.getNome(), dto.getEmail(), dto.getCpf(), dto.getMatricula(), 
+				dto.getCurso(), dto.getSenha(), dto.getDataIngresso(),dto.getTipoContribuidor(), null);
+		
+		usuario = repository.save(usuario);
+		return new UsuarioDTO(usuario);
+	}
 }
