@@ -67,16 +67,6 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  getErrors(controlName) {
-
-
-
-    if (this.formLogin.get(controlName).hasError('required')) {
-      return '* Campo obrigatório';
-    }
-    return '';
-  }
-
   get email() {
     return this.formLogin.get('email').value;
   }
