@@ -33,14 +33,14 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.formLogin = this.fb.group({
       email: [null, [Validators.required, Validators.email]],
-      password: [null, [Validators.required]]
+      senha: [null, [Validators.required]]
     })
   }
 
   onSubmit() {
 
     if (this.formLogin.valid) {
-      this.usuarioService.confirmLogin(this.email, this.password)
+      this.usuarioService.confirmLogin(this.email, this.senha)
         .pipe(
           finalize(() => {
             // finaliza o carregamento
@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
     return this.formLogin.get('email').value;
   }
 
-  get password() {
-    return this.formLogin.get('password').value;
+  get senha() {
+    return this.formLogin.get('senha').value;
   }
 }
