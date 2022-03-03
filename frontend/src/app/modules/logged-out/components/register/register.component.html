@@ -17,7 +17,7 @@
             <br/>
             <mat-form-field appearance="outline">
               <mat-label>CPF</mat-label>
-              <input matInput placeholder="CPF" formControlName="cpf" required>
+              <input matInput placeholder="CPF" formControlName="cpf" required [pptCpfMaskDirective]="formPersonal.controls.cpf">
             </mat-form-field>
             <div>
               <button mat-button matStepperNext>Avançar</button>
