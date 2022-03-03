@@ -9,7 +9,7 @@
         <mat-form-field appearance="outline" class="mat-form-field">
           <mat-label>Email</mat-label>
           <input type="email" formControlName="email" matInput>
-          <mat-error error-messages [control]="email"></mat-error>
+          <mat-error error-messages [control]="formLogin.controls.email"></mat-error>
         </mat-form-field>
         <br/>
         <mat-form-field appearance="outline">

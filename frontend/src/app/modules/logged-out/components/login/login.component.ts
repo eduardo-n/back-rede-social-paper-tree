@@ -15,9 +15,9 @@ import { ViewEncapsulation } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  formLogin: FormGroup
+  formLogin: FormGroup;
 
-  sessionStorage: WindowSessionStorage
+  sessionStorage: WindowSessionStorage;
 
   usuarioModel: UserModel;
 
