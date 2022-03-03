@@ -34,7 +34,7 @@ public class UsuarioController {
 		return service.findUsersWithEmailAndPassword(email, senha);
 	}
 	
-	@PostMapping
+	@PostMapping("/inserir")
 	public ResponseEntity<UsuarioDTO> insert(@RequestBody UsuarioDTO dto){
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")

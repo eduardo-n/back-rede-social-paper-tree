@@ -30,7 +30,7 @@ public class UsuarioDTO implements Serializable{
 	}
 	
 	public UsuarioDTO(Long id, String nome, String email, String cpf, int matricula, String curso, String senha,
-			Date dataIngresso, TipoContribuidor tipoContribuidors) {
+			Date dataIngresso, TipoContribuidor tipoContribuidor) {
 		super();
 		this.id = id;
 		this.nome = nome;
