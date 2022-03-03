@@ -81,15 +81,31 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  // get email(){
-  //   return this.formRegister.get('email').value;
-  // }
+  get nome(){
+    return this.formPersonal.get('nome').value;
+  }
 
-  // get newPassword(){
-  //   return this.formRegister.get('newPassword').value;
-  // }
+  get cpf(){
+    return this.formPersonal.get('cpf').value;
+  }
 
-  // get confirmPassword(){
-  //   return this.formRegister.get('confirmPassword').value;
-  // }
+  get curso(){
+    return this.formCollege.get('curso').value;
+  }
+
+  get matricula(){
+    return this.formCollege.get('matricula').value;
+  }
+
+  get dataIngresso(){
+    return this.formCollege.get('dataIngresso').value;
+  }
+
+  get email(){
+    return this.formLogon.get('email').value;
+  }
+
+  get password(){
+    return this.formLogon.get('senha').value;
+  }
 }
