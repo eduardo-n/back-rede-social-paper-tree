@@ -19,6 +19,15 @@
       top: 20%;
       position: absolute;
 
+      .mat-stepper-vertical {
+        margin-top: 8px;
+        margin-bottom: 40px;
+      }
+
+      .mat-form-field {
+        margin-top: 16px;
+      }
+
       .default-text-form{
         font-size: 16px;
         font-family: $roboto;
@@ -67,9 +76,3 @@
     display: inline-block;
   }
 }
-
-// ::ng-deep .mat-form-field {
-//   .mat-input-element{
-//     background-color: pink;
-//   }
-// }

@@ -25,7 +25,6 @@ import { RegisterComponent } from './components/register/register.component';
     MatSnackBarModule,
     MaterialModule,
     LoggedOutRoutingModule,
-
   ],
   exports: [
     //components

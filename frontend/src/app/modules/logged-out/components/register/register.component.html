@@ -1,51 +1,86 @@
 <div class="pg-register">
   <div class="left-block">
 
-    <form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
-      <div class="form-register">
-        <div class="default-text-form">Bem-vindo</div>
-        <div class="title-form">Cadastre-se</div>
+    <div class="form-register">
+      <div class="default-text-form">Bem-vindo</div>
+      <div class="title-form">Cadastre-se</div>
 
-        <mat-form-field appearance="outline" class="mat-form-field">
-          <mat-label>Email</mat-label>
-          <input type="email" formControlName="email" matInput>
-          <mat-error error-message>Erro message here</mat-error>
-        </mat-form-field>
-        <br/>
-        <mat-form-field appearance="outline">
-          <mat-label>Nova senha</mat-label>
-          <input [type]="hidePassword ? 'password' : 'text'" formControlName="newPassword" matInput>
-          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
-            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-        </mat-form-field>
-        <br/>
-        <mat-form-field appearance="outline">
-          <mat-label>Confirmar senha</mat-label>
-          <input [type]="hidePassword ? 'password' : 'text'" formControlName="confirmPassword" matInput>
-          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
-            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-        </mat-form-field>
-        <!-- <br/>
-        <mat-checkbox class="example-margin">
-          Orientador
-        </mat-checkbox>
-        <br/>
-        <br/> -->
-        <div>
-          <button mat-flat-button type="submit" (click)="onSubmit()" class="btn-register">Confirmar</button>
-        </div>
-        <div class="links">
-          <a [routerLink]="['/login']">Cancelar cadastro</a>
-        </div>
+      <mat-stepper orientation="vertical" [linear]="false" #stepper>
+
+        <mat-step [stepControl]="formPersonal">
+          <form [formGroup]="formPersonal">
+            <ng-template matStepLabel>Dados pessoais</ng-template>
+            <mat-form-field appearance="outline">
+              <mat-label>Nome</mat-label>
+              <input matInput placeholder="Nome Completo" formControlName="nome" required>
+            </mat-form-field>
+            <br/>
+            <mat-form-field appearance="outline">
+              <mat-label>CPF</mat-label>
+              <input matInput placeholder="CPF" formControlName="cpf" required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Avançar</button>
+            </div>
+          </form>
+        </mat-step>
+
+        <mat-step [stepControl]="formCollege">
+          <form [formGroup]="formCollege">
+            <ng-template matStepLabel>Dados universitários</ng-template>
+            <mat-form-field appearance="outline">
+              <mat-label>Curso</mat-label>
+              <input matInput formControlName="curso" placeholder="Curso" required>
+            </mat-form-field>
+            <br/>
+            <mat-form-field appearance="outline">
+              <mat-label>Matrícula</mat-label>
+              <input matInput formControlName="matricula" placeholder="Matrícula" required>
+            </mat-form-field>
+            <br/>
+            <!-- <mat-form-field appearance="outline">
+              <mat-label>Data de ingresso</mat-label>
+              <input matInput formControlName="entryDate" placeholder="Data de ingresso" required>
+            </mat-form-field> -->
+            <div>
+              <button mat-button matStepperPrevious>Voltar</button>
+              <button mat-button matStepperNext>Avançar</button>
+            </div>
+          </form>
+        </mat-step>
+
+        <mat-step [stepControl]="formLogon">
+          <form [formGroup]="formLogon">
+            <ng-template matStepLabel>Dados de acesso</ng-template>
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Email" formControlName="email" required>
+            </mat-form-field>
+            <br/>
+            <mat-form-field appearance="outline">
+              <mat-label>Senha</mat-label>
+              <input matInput placeholder="Senha" formControlName="senha" required>
+            </mat-form-field>
+            <br/>
+            <mat-form-field appearance="outline">
+              <mat-label>Confirmar senha</mat-label>
+              <input matInput placeholder="Senha" required>
+            </mat-form-field>
+            <div>
+              <button mat-flat-button type="submit" (click)="onSubmit()" class="btn-register">Cadastrar</button>
+            </div>
+          </form>
+        </mat-step>
+
+      </mat-stepper>
+
+      <div class="links">
+        <a [routerLink]="['/login']">Cancelar cadastro</a>
       </div>
-    </form>
-
+    </div>
   </div>
 
   <div class="right-block">
 
   </div>
 </div>
-
