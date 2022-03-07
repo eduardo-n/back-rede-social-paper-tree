@@ -46,8 +46,8 @@ export class RegisterComponent implements OnInit {
     })
 
     this.formLogon = this.fb.group({
-      email: [null, [Validators.required, Validators.email]],
-      senha: [null, [Validators.required, Validators.minLength(6)]]
+      email: [null, [Validators.required, Validators.email, pptValidators.emailUfvDomain]],
+      senha: [null, [Validators.required/*, pptValidators.validPassword*/]]
     })
   }
 
@@ -80,6 +80,11 @@ export class RegisterComponent implements OnInit {
       duration: 5000,
       panelClass: styleClass
     });
+  }
+
+  nivelSenhaVar: number = 0;
+  nivelSenha() {
+    this.nivelSenhaVar = 15;
   }
 
   get nome(){
