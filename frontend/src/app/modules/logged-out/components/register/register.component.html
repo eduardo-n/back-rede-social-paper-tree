@@ -64,7 +64,7 @@
             <br/>
             <mat-form-field appearance="outline">
               <mat-label>Senha</mat-label>
-              <input matInput placeholder="Senha" formControlName="senha" required>
+              <input matInput placeholder="Senha" formControlName="senha" minlength="6" required>
               <mat-error error-messages [control]="senha"></mat-error>
             </mat-form-field>
             <br/>
