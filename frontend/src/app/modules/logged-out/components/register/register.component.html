@@ -13,6 +13,7 @@
             <mat-form-field appearance="outline">
               <mat-label>Nome</mat-label>
               <input matInput placeholder="Nome Completo" formControlName="nome" required>
+              <mat-error error-messages [control]="nome"></mat-error>
             </mat-form-field>
             <br/>
             <mat-form-field appearance="outline">
@@ -32,11 +33,13 @@
             <mat-form-field appearance="outline">
               <mat-label>Curso</mat-label>
               <input matInput formControlName="curso" placeholder="Curso" required>
+              <mat-error error-messages [control]="curso"></mat-error>
             </mat-form-field>
             <br/>
             <mat-form-field appearance="outline">
               <mat-label>Matrícula</mat-label>
               <input matInput formControlName="matricula" placeholder="Matrícula" required>
+              <mat-error error-messages [control]="matricula"></mat-error>
             </mat-form-field>
             <br/>
             <!-- <mat-form-field appearance="outline">
@@ -56,6 +59,7 @@
             <mat-form-field appearance="outline">
               <mat-label>Email</mat-label>
               <input matInput placeholder="Email" formControlName="email" required>
+              <mat-error error-messages [control]="email"></mat-error>
             </mat-form-field>
             <br/>
             <mat-form-field appearance="outline">
