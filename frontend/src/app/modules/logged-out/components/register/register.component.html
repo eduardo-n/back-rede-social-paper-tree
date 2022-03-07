@@ -12,7 +12,7 @@
             <ng-template matStepLabel>Dados pessoais</ng-template>
             <mat-form-field appearance="outline">
               <mat-label>Nome</mat-label>
-              <input matInput placeholder="Nome Completo" formControlName="nome" required>
+              <input matInput placeholder="Nome Completo" formControlName="nome" required (input)="nome.setValue(nome.value.toUpperCase())">
               <mat-error error-messages [control]="nome"></mat-error>
             </mat-form-field>
             <br/>
