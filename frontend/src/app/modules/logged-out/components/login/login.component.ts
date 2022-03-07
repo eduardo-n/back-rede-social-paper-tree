@@ -32,6 +32,10 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.buildForm();
+  }
+
+  buildForm() {
     this.formLogin = this.fb.group({
       email: [null, [Validators.required, Validators.email, pptValidators.emailUfvDomain]],
       senha: [null, [Validators.required]]
@@ -41,7 +45,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
 
     if (this.formLogin.valid) {
-      this.usuarioService.confirmLogin(this.email, this.senha)
+      this.usuarioService.confirmLogin(this.email.value, this.senha.value)
         .pipe(
           finalize(() => {
             // finaliza o carregamento
@@ -69,10 +73,10 @@ export class LoginComponent implements OnInit {
   }
 
   get email() {
-    return this.formLogin.get('email').value;
+    return this.formLogin.get('email');
   }
 
   get senha() {
-    return this.formLogin.get('senha').value;
+    return this.formLogin.get('senha');
   }
 }

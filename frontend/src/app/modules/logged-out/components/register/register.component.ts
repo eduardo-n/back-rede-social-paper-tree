@@ -34,6 +34,10 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.buildForm();
+  }
+
+  buildForm() {
     this.formPersonal = this.fb.group({
       nome: [null, [Validators.required]],
       cpf: [null, [Validators.required, pptValidators.cpf]]
@@ -55,7 +59,6 @@ export class RegisterComponent implements OnInit {
 
     if(this.formPersonal.valid && this.formCollege.valid && this.formLogon.valid){
 
-      debugger
       const userDate={
         ...this.formPersonal.value,
         ...this.formCollege.value,
@@ -88,30 +91,30 @@ export class RegisterComponent implements OnInit {
   }
 
   get nome(){
-    return this.formPersonal.get('nome').value;
+    return this.formPersonal.get('nome');
   }
 
   get cpf(){
-    return this.formPersonal.get('cpf').value;
+    return this.formPersonal.get('cpf');
   }
 
   get curso(){
-    return this.formCollege.get('curso').value;
+    return this.formCollege.get('curso');
   }
 
   get matricula(){
-    return this.formCollege.get('matricula').value;
+    return this.formCollege.get('matricula');
   }
 
   get dataIngresso(){
-    return this.formCollege.get('dataIngresso').value;
+    return this.formCollege.get('dataIngresso');
   }
 
   get email(){
-    return this.formLogon.get('email').value;
+    return this.formLogon.get('email');
   }
 
-  get password(){
-    return this.formLogon.get('senha').value;
+  get senha(){
+    return this.formLogon.get('senha');
   }
 }

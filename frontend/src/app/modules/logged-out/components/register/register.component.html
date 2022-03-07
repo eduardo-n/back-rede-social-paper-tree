@@ -17,8 +17,8 @@
             <br/>
             <mat-form-field appearance="outline">
               <mat-label>CPF</mat-label>
-              <input matInput placeholder="CPF" formControlName="cpf" required [pptCpfMaskDirective]="formPersonal.controls.cpf">
-              <mat-error error-messages [control]="formPersonal.controls.cpf"></mat-error>
+              <input matInput placeholder="CPF" formControlName="cpf" required [pptCpfMaskDirective]="cpf">
+              <mat-error error-messages [control]="cpf"></mat-error>
             </mat-form-field>
             <div>
               <button mat-button matStepperNext>Avançar</button>
@@ -61,7 +61,7 @@
             <mat-form-field appearance="outline">
               <mat-label>Senha</mat-label>
               <input matInput placeholder="Senha" formControlName="senha" required>
-              <mat-error error-messages [control]="formLogon.controls.senha"></mat-error>
+              <mat-error error-messages [control]="senha"></mat-error>
             </mat-form-field>
             <br/>
             <mat-form-field appearance="outline">
