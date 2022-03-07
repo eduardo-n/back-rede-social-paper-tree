@@ -38,7 +38,7 @@
             <br/>
             <mat-form-field appearance="outline">
               <mat-label>Matrícula</mat-label>
-              <input matInput formControlName="matricula" placeholder="Matrícula" required>
+              <input matInput type="number" max="9999" formControlName="matricula" placeholder="Matrícula" required>
               <mat-error error-messages [control]="matricula"></mat-error>
             </mat-form-field>
             <br/>
