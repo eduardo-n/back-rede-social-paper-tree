@@ -34,6 +34,10 @@
 
       mat-form-field{
         width: 300px;
+
+        .email-field{
+          text-transform: lowercase;
+        }
       }
 
       .btn-login{
@@ -79,5 +83,7 @@
     box-shadow: 0 0 10px #719ECE;
   }
 }
+
+
 
 

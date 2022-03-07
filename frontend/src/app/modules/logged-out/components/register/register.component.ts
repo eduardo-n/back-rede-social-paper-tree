@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
 
   buildForm() {
     this.formPersonal = this.fb.group({
-      nome: [null, [Validators.required]],
+      nome: [null, [Validators.required, pptValidators.fullNameSurname]],
       cpf: [null, [Validators.required, pptValidators.cpf]]
     });
 

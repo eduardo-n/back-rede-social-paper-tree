@@ -43,6 +43,10 @@
 
       mat-form-field{
         width: 300px;
+
+        .email-field{
+          text-transform: lowercase;
+        }
       }
 
       .btn-register{
