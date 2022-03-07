@@ -6,6 +6,7 @@ import { UserModel } from '../../../../core/models/user.model'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { finalize } from 'rxjs/operators';
 import { ViewEncapsulation } from '@angular/core';
+import { pptValidators } from 'src/app/shared/validators/ppt-validators';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.formLogin = this.fb.group({
-      email: [null, [Validators.required, Validators.email]],
+      email: [null, [Validators.required, Validators.email, pptValidators.emailUfvDomain]],
       senha: [null, [Validators.required]]
     })
   }

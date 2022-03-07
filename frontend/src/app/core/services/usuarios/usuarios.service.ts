@@ -14,10 +14,10 @@ export class UsuariosService {
   ) { }
 
   confirmLogin(email:String, password: String){
-    return this.httpService.get(environment.baseURL+'usuarios/login/'+email+'/'+password);
+    return this.httpService.get(`${environment.baseURL}usuarios/login/${email}/${password}`);
   }
 
   registerUser(user){
-    return this.httpService.post(environment.baseURL+'usuarios/inserir', user);
+    return this.httpService.post(`${environment.baseURL}usuarios/inserir`, user);
   }
 }
