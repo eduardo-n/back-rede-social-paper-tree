@@ -5,6 +5,7 @@ import { UserModel } from 'src/app/core/models/user.model';
 import { UsuariosService } from 'src/app/core/services/usuarios/usuarios.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { finalize } from 'rxjs/operators';
+import { pptValidators } from 'src/app/shared/validators/ppt-validators';
 
 @Component({
   selector: 'app-register',
@@ -35,7 +36,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.formPersonal = this.fb.group({
       nome: [null, [Validators.required]],
-      cpf: [null, [Validators.required]]
+      cpf: [null, [Validators.required, pptValidators.cpf]]
     });
 
     this.formCollege = this.fb.group({
