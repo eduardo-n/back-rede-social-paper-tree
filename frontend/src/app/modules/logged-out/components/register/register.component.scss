@@ -16,7 +16,7 @@
       width: auto;
       height: auto;
       left: 28%;
-      top: 20%;
+      top: 15%;
       position: absolute;
 
       .mat-stepper-vertical {
@@ -49,11 +49,26 @@
         }
       }
 
+      .btn-step{
+        color: white;
+        margin-top: 20px;
+
+        &.btn-previous{
+          background-color: #004c72;
+          margin-right: 15px;
+        }
+
+        &.btn-next{
+          background-color: #00ACFF;
+          margin-right: 15px;
+        }
+      }
+
       .btn-register{
         background-color: #00ACFF;
         width: 300px;
         height: 50px;
-        margin-bottom: 17px;
+        margin-top: 20px;
         color: white;
       }
 
