@@ -71,7 +71,7 @@ export class RegisterComponent implements OnInit {
       const userDate={
         ...this.formPersonal.value,
         ...this.formCollege.value,
-        ...this.formLogon
+        ...this.formLogon.value
       };
 
       this.usuarioService.registerUser(userDate)
