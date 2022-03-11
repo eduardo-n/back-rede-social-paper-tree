@@ -12,12 +12,10 @@ export class CpfMaskDirective implements OnInit {
   public nativeElement: HTMLInputElement;
 
   constructor(private el: ElementRef) {
-    debugger
     this.nativeElement = this.el.nativeElement;
   }
 
   ngOnInit(): void {
-      debugger
       this.maskValue(this.pptCpfMaskDirective.value);
       this.pptCpfMaskDirective.valueChanges
       .pipe(

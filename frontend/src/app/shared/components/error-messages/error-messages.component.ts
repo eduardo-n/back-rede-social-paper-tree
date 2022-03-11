@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { AbstractControl, AbstractControlDirective } from '@angular/forms';
 
@@ -20,8 +21,9 @@ export class ErrorMessagesComponent {
   }
 
   private readonly errorMessages = {
-    required: () => this.message ? this.message : 'Campo obrigatório',
+    required: () => 'Campo obrigatório',
     email: () => this.message ? this.message : 'Email inválido',
+    minLength: () => this.message ? this.message : 'Quantidade de dígitos inválida',
     default: (type, params) => {
       console.log('unmaped message throws: ', type, params);
       return this.message ? this.message : (params.message || 'Conteúdo inválido');
@@ -31,20 +33,17 @@ export class ErrorMessagesComponent {
   constructor() { }
 
   get firstError() {
-    debugger
     this.message;
     this.control;
     return this.listOfErrors()[0];
   }
 
   private getMessage(type: string, params: any) {
-    debugger
     const r = this.errorMessages[type] ? this.errorMessages[type](params) : this.errorMessages.default(type, params);
     return r;
   }
 
   listOfErrors(): string[] {
-    debugger
     const arr = (this.control && this.control.errors) ?
       Object.keys(this.control.errors).map(field => this.getMessage(field, this.control.errors[field])) :
       [];
