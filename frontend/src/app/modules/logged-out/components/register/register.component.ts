@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
 
     this.formCollege = this.fb.group({
       curso: [null, [Validators.required]],
-      matricula: [null, [Validators.required]],
+      matricula: [null, [Validators.required, Validators.minLength(4)]],
       // entryDate: [null, [Validators.required]]
     })
 
@@ -85,9 +85,8 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  nivelSenhaVar: number = 0;
-  nivelSenha() {
-    this.nivelSenhaVar = 15;
+  onlyNumbers(event){
+    return event.charCode>=48 && event.charCode<=57;
   }
 
   get nome(){

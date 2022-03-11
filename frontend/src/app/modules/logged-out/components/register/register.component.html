@@ -29,7 +29,7 @@
 
         <mat-step [stepControl]="formCollege">
           <form [formGroup]="formCollege">
-            <ng-template matStepLabel>Dados universitários</ng-template>
+            <ng-template matStepLabel>Dados acadêmicos</ng-template>
             <mat-form-field appearance="outline">
               <mat-label>Curso</mat-label>
               <input matInput formControlName="curso" placeholder="Curso" required>
@@ -38,8 +38,8 @@
             <br/>
             <mat-form-field appearance="outline">
               <mat-label>Matrícula</mat-label>
-              <input matInput type="number" max="9999" formControlName="matricula" placeholder="Matrícula" required>
-              <mat-error error-messages [control]="matricula"></mat-error>
+              <input matInput formControlName="matricula" placeholder="Matrícula" required [maxLength]="4" (keypress)="onlyNumbers($event)">
+              <mat-error error-messages [message]="'A matrícula deve ter 4 dígitos'" [control]="matricula"></mat-error>
             </mat-form-field>
             <br/>
             <!-- <mat-form-field appearance="outline">
@@ -62,11 +62,16 @@
               <mat-error error-messages [control]="email"></mat-error>
             </mat-form-field>
             <br/>
+
             <mat-form-field appearance="outline">
               <mat-label>Senha</mat-label>
-              <input matInput placeholder="Senha" formControlName="senha" required>
+              <input [type]="hidePassword ? 'password' : 'text'" formControlName="senha" matInput>
               <mat-error error-messages [control]="senha"></mat-error>
+              <button type="button" mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
+                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
             </mat-form-field>
+
             <br/>
             <mat-form-field appearance="outline">
               <mat-label>Confirmar senha</mat-label>
