@@ -70,7 +70,8 @@
             <br/>
             <mat-form-field appearance="outline">
               <mat-label>Confirmar senha</mat-label>
-              <input matInput placeholder="Senha" required>
+              <input matInput placeholder="Senha" formControlName="confirmarSenha" required>
+              <mat-error error-messages [control]="confirmarSenha"></mat-error>
             </mat-form-field>
             <div>
               <button mat-flat-button type="submit" (click)="onSubmit()" class="btn-register">Cadastrar</button>

@@ -8,6 +8,7 @@ export interface UserModel{
   matricula: number,
   curso: string,
   senha: string,
+  confirmarSenha: string,
   dataIngresso: Date,
   tipoContribuidor: tipoContribuidorEnum
 }

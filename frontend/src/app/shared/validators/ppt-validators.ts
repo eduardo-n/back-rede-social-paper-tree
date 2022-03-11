@@ -1,4 +1,4 @@
-import { AbstractControl, ValidationErrors } from "@angular/forms";
+import { AbstractControl, FormGroup, ValidationErrors, ValidatorFn } from "@angular/forms";
 import { isValidCpf } from "./documentos/is-valid-cpf.utils";
 
 export class pptValidators {

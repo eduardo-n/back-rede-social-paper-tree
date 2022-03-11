@@ -31,20 +31,17 @@ export class ErrorMessagesComponent {
   constructor() { }
 
   get firstError() {
-    debugger
     this.message;
     this.control;
     return this.listOfErrors()[0];
   }
 
   private getMessage(type: string, params: any) {
-    debugger
     const r = this.errorMessages[type] ? this.errorMessages[type](params) : this.errorMessages.default(type, params);
     return r;
   }
 
   listOfErrors(): string[] {
-    debugger
     const arr = (this.control && this.control.errors) ?
       Object.keys(this.control.errors).map(field => this.getMessage(field, this.control.errors[field])) :
       [];
