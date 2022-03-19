@@ -1,6 +1,7 @@
 package com.projetotcc.papertree.controllers;
 
 import java.net.URI;
+import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
 
@@ -37,7 +38,13 @@ public class UsuarioController {
 	
 	@GetMapping("/login/{email}/{senha}")
 	public Boolean findUsersWithEmailAndPassword(@PathVariable("email") String email, @PathVariable("senha") String senha){
-		return service.findUsersWithEmailAndPassword(email, senha);
+		
+		byte[] emailBytes = Base64.getDecoder().decode(email);
+		String emailDecodificado = new String(emailBytes);
+		byte[] senhaBytes = Base64.getDecoder().decode(senha);
+		String senhaDecodificada = new String(senhaBytes);
+		
+		return service.findUsersWithEmailAndPassword(emailDecodificado, senhaDecodificada);
 	}
 	
 	@PostMapping("/inserir")
@@ -53,8 +60,11 @@ public class UsuarioController {
 	 public void send(@PathVariable("email") String email) {
 		 SimpleMailMessage message = new SimpleMailMessage();
 			
+		 byte[] emailBytes = Base64.getDecoder().decode(email);
+		 String emailDecodificado = new String(emailBytes);
+		 
 			message.setFrom("vitinhopaivinha@gmail.com");
-			message.setTo(email);
+			message.setTo(emailDecodificado);
 			message.setText(UUID.randomUUID().toString().toUpperCase());
 			message.setSubject("Confirmação de email");
 			
