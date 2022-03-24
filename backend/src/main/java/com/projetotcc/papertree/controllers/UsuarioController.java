@@ -49,6 +49,11 @@ public class UsuarioController {
 	
 	@PostMapping("/inserir")
 	public ResponseEntity<UsuarioDTO> insert(@RequestBody UsuarioDTO dto){
+		byte[] emailBytes = Base64.getDecoder().decode(dto.getEmail());
+		dto.setSenha(new String(emailBytes));
+		byte[] senhaBytes = Base64.getDecoder().decode(dto.getSenha());
+		dto.setSenha(new String(senhaBytes));
+		
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(dto.getId()).toUri();
