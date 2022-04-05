@@ -1,6 +1,7 @@
 package com.projetotcc.papertree.controllers;
 
 import java.net.URI;
+import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,7 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.projetotcc.papertree.dto.UsuarioDTO;
+import com.projetotcc.papertree.services.SendEmailService;
 import com.projetotcc.papertree.services.UsuarioService;
+import com.projetotcc.papertree.util.Util;
 
 @RestController
 @RequestMapping(value = "/usuarios")
@@ -27,7 +30,7 @@ public class UsuarioController {
 	private UsuarioService service;
 	
 	@Autowired
-	private JavaMailSender mailSender;
+    private SendEmailService sendEmailService;
 	
 	@GetMapping
 	public ResponseEntity<List<UsuarioDTO>> findAll(){
@@ -37,27 +40,43 @@ public class UsuarioController {
 	
 	@GetMapping("/login/{email}/{senha}")
 	public Boolean findUsersWithEmailAndPassword(@PathVariable("email") String email, @PathVariable("senha") String senha){
-		return service.findUsersWithEmailAndPassword(email, senha);
+		
+		String emailDecodificado = Util.decodeValue(email);
+		
+		String senhaDecodificada = Util.decodeValue(senha);
+		
+		return service.findUsersWithEmailAndPassword(emailDecodificado, senhaDecodificada);
 	}
 	
 	@PostMapping("/inserir")
 	public ResponseEntity<UsuarioDTO> insert(@RequestBody UsuarioDTO dto){
+		
+		String emailDecodificado = Util.decodeValue(dto.getEmail());		
+		String senhaDecodificada = Util.decodeValue(dto.getSenha());
+		
+		dto.setEmail(emailDecodificado);
+		dto.setSenha(senhaDecodificada);
+		
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
 	}
-	 
+	
+	@PostMapping("/email/{email}")
+    public String sendMail(@PathVariable("email") String email) {
+		String emailDecodificado = Util.decodeValue(email);
+		int token = sendEmailService.sendEmail(emailDecodificado);
+		return Base64.getEncoder().encodeToString(String.valueOf(token).getBytes());
+    }
+	
+	@GetMapping("/validar/{token}/orientador")
+    public Boolean validTokenProfessorOrientador(@PathVariable("token") String token){
 
-	 @GetMapping("/send/{email}")
-	 public void send(@PathVariable("email") String email) {
-		 SimpleMailMessage message = new SimpleMailMessage();
-			
-			message.setFrom("vitinhopaivinha@gmail.com");
-			message.setTo(email);
-			message.setText(UUID.randomUUID().toString().toUpperCase());
-			message.setSubject("Confirmação de email");
-			
-			mailSender.send(message);
-	 }
+		String tokenDecodificado = Util.decodeValue(token);
+
+        if(tokenDecodificado.equals("FFA74UFV1355U8ABU981"))
+            return true;
+        return false;
+    }
 }
