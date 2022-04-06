@@ -38,10 +38,19 @@ public class UsuarioService {
 	
 	@Transactional
 	public UsuarioDTO insert(UsuarioDTO dto){
-		Usuario usuario = new Usuario(null, dto.getNome(), dto.getEmail(), dto.getCpf(), dto.getMatricula(), 
-				dto.getCurso(), dto.getSenha(), dto.getDataIngresso(),dto.getTipoContribuidor(), null);
 		
-		usuario = repository.save(usuario);
-		return new UsuarioDTO(usuario);
+		Usuario usuarioEmail = new Usuario();
+		usuarioEmail = repository.findUsersWithEmail(dto.getEmail());
+		if(usuarioEmail == null) {
+			Usuario usuario = new Usuario(null, dto.getNome(), dto.getEmail(), dto.getCpf(), dto.getMatricula(), 
+					dto.getCurso(), dto.getSenha(), dto.getDataIngresso(),dto.getTipoContribuidor(), null);
+			
+			usuario = repository.save(usuario);
+			return new UsuarioDTO(usuario);
+		}
+		else {
+			return null;
+		}
+		
 	}
 }
