@@ -51,16 +51,22 @@ public class UsuarioController {
 	@PostMapping("/inserir")
 	public ResponseEntity<UsuarioDTO> insert(@RequestBody UsuarioDTO dto){
 		
-		String emailDecodificado = Util.decodeValue(dto.getEmail());		
-		String senhaDecodificada = Util.decodeValue(dto.getSenha());
+//		String emailDecodificado = Util.decodeValue(dto.getEmail());		
+//		String senhaDecodificada = Util.decodeValue(dto.getSenha());
 		
-		dto.setEmail(emailDecodificado);
-		dto.setSenha(senhaDecodificada);
+//		dto.setEmail(emailDecodificado);
+//		dto.setSenha(senhaDecodificada);
 		
 		dto = service.insert(dto);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(dto.getId()).toUri();
-		return ResponseEntity.created(uri).body(dto);
+		if(dto == null) {
+			return ResponseEntity.badRequest().body(null);
+		}
+		else{
+			URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+					.buildAndExpand(dto.getId()).toUri();
+			return ResponseEntity.created(uri).body(dto);
+		}
+		
 	}
 	
 	@PostMapping("/email/{email}")
