@@ -70,12 +70,12 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/email/{email}")
-    public Boolean sendMail(@PathVariable("email") String email) {
+    public int sendMail(@PathVariable("email") String email) {
 		String emailDecodificado = Util.decodeValue(email);
 		int token = sendEmailService.sendEmail(emailDecodificado);
 		if(token != 0) 
-			return true; 
-		else return false;
+			return token; 
+		else return 0;
     }
 	
 	@GetMapping("/validar/{token}/orientador")
