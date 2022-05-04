@@ -26,14 +26,14 @@ public class UsuarioService {
 	}
 	
 	@Transactional
-	public Boolean findUsersWithEmailAndPassword(String email, String senha){
+	public Usuario findUsersWithEmailAndPassword(String email, String senha){
 		Usuario usuario = new Usuario();
 		usuario = (Usuario) repository.findUsersWithEmailAndPassword(email, senha);
 		
 		if(Objects.isNull(usuario)) {
-			return false;
+			return null;
 		}
-		return true;
+		return usuario;
 	}
 	
 	@Transactional
