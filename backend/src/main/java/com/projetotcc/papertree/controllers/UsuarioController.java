@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.projetotcc.papertree.dto.UsuarioDTO;
+import com.projetotcc.papertree.entities.Usuario;
 import com.projetotcc.papertree.services.SendEmailService;
 import com.projetotcc.papertree.services.UsuarioService;
 import com.projetotcc.papertree.util.Util;
@@ -38,8 +39,14 @@ public class UsuarioController {
 		return ResponseEntity.ok().body(list);
 	}
 	
+	@GetMapping("/search/{str}")
+	public ResponseEntity<List<UsuarioDTO>> findUsersBySplitNameOrRegister(@PathVariable("str") String str){
+		List<UsuarioDTO> list = service.findUsersBySplitNameOrRegister(str);
+		return ResponseEntity.ok().body(list);
+	}
+	
 	@GetMapping("/login/{email}/{senha}")
-	public Boolean findUsersWithEmailAndPassword(@PathVariable("email") String email, @PathVariable("senha") String senha){
+	public Usuario findUsersWithEmailAndPassword(@PathVariable("email") String email, @PathVariable("senha") String senha){
 		
 		String emailDecodificado = Util.decodeValue(email);
 		
