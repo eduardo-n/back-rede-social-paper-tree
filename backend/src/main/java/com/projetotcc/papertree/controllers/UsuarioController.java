@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.projetotcc.papertree.dto.UsuarioDTO;
-import com.projetotcc.papertree.entities.Usuario;
 import com.projetotcc.papertree.services.SendEmailService;
 import com.projetotcc.papertree.services.UsuarioService;
 import com.projetotcc.papertree.util.Util;
@@ -40,7 +39,7 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/login/{email}/{senha}")
-	public Usuario findUsersWithEmailAndPassword(@PathVariable("email") String email, @PathVariable("senha") String senha){
+	public Boolean findUsersWithEmailAndPassword(@PathVariable("email") String email, @PathVariable("senha") String senha){
 		
 		String emailDecodificado = Util.decodeValue(email);
 		
