@@ -1,6 +1,6 @@
 INSERT INTO tb_usuario (cpf, curso, email, matricula, nome, senha, tipo_contribuidor) VALUES ('25012025456', 'Sistemas de Informação', 'vpc@ufv.br', 5973, 'Victor Paiva', 'vpcastro00', 0);
-INSERT INTO tb_usuario (cpf, curso, email, matricula, nome, senha, tipo_contribuidor) VALUES ('85214565788', 'Engenharia de Dados', 'rachel@ufv.br', 5973, 'Rachel Reis', 'rachel200', 1);
-INSERT INTO tb_usuario (cpf, curso, email, matricula, nome, senha, tipo_contribuidor) VALUES ('25668445223', 'Sistemas de Informação', 'dudu@ufv.br', 5973, 'Eduardo Nunes', 'dudu85', 0);
+INSERT INTO tb_usuario (cpf, curso, email, matricula, nome, senha, tipo_contribuidor) VALUES ('85214565788', 'Engenharia de Dados', 'rachel@ufv.br', 4444, 'Rachel Reis', 'rachel200', 1);
+INSERT INTO tb_usuario (cpf, curso, email, matricula, nome, senha, tipo_contribuidor) VALUES ('25668445223', 'Sistemas de Informação', 'dudu@ufv.br', 6021, 'Eduardo Nunes', 'dudu85', 0);
 
 INSERT INTO tb_trabalho (area, descricao, titulo) VALUES ('Tecnologia da Informação', 'Melhor trabalho do Brasil', 
 'Rede Social para TCC - PaperTree');
