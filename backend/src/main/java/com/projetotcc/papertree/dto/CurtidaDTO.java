@@ -2,9 +2,7 @@ package com.projetotcc.papertree.dto;
 
 import java.io.Serializable;
 
-import com.projetotcc.papertree.entities.Comentario;
 import com.projetotcc.papertree.entities.Curtida;
-import com.projetotcc.papertree.entities.Postagem;
 import com.projetotcc.papertree.entities.Usuario;
 
 public class CurtidaDTO implements Serializable{

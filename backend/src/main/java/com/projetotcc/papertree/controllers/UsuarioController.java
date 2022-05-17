@@ -1,14 +1,10 @@
 package com.projetotcc.papertree.controllers;
 
 import java.net.URI;
-import java.util.Base64;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.projetotcc.papertree.dto.UsuarioDTO;
+import com.projetotcc.papertree.entities.Usuario;
 import com.projetotcc.papertree.services.SendEmailService;
 import com.projetotcc.papertree.services.UsuarioService;
 import com.projetotcc.papertree.util.Util;
@@ -39,7 +36,7 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/login/{email}/{senha}")
-	public Boolean findUsersWithEmailAndPassword(@PathVariable("email") String email, @PathVariable("senha") String senha){
+	public Usuario findUsersWithEmailAndPassword(@PathVariable("email") String email, @PathVariable("senha") String senha){
 		
 		String emailDecodificado = Util.decodeValue(email);
 		

@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.projetotcc.papertree.entities.Comentario;
-import com.projetotcc.papertree.entities.Curtida;
 import com.projetotcc.papertree.entities.Postagem;
 import com.projetotcc.papertree.entities.Trabalho;
 
