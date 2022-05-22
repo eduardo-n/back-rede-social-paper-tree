@@ -26,6 +26,13 @@ public class UsuarioService {
 	}
 	
 	@Transactional
+	public  List<UsuarioDTO> findUsersBySplitNameOrRegister(String string){
+		List<Usuario> list = repository.findUsersBySplitNameOrRegister(string.toUpperCase());
+		
+		return list.stream().map(x -> new UsuarioDTO(x)).collect(Collectors.toList());
+	}
+	
+	@Transactional
 	public Usuario findUsersWithEmailAndPassword(String email, String senha){
 		Usuario usuario = new Usuario();
 		usuario = (Usuario) repository.findUsersWithEmailAndPassword(email, senha);
