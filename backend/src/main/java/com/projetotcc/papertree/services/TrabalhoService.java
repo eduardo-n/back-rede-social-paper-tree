@@ -32,7 +32,7 @@ public class TrabalhoService {
     @Transactional
     public TrabalhoDTO insert(TrabalhoDTO dto){
 
-        Trabalho trabalho = new Trabalho(null, dto.getTitulo(), dto.getArea(), dto.getDescricao());
+        Trabalho trabalho = new Trabalho(null, dto.getTitulo(), dto.getArea(), dto.getDescricao(), dto.getAvaliacao());
 
         for(UsuarioDTO contribuidores : dto.getContribuidores()) {
             Usuario usuario = usuarioRepository.getOne(contribuidores.getId());
