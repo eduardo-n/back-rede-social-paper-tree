@@ -17,18 +17,20 @@ public class TrabalhoDTO implements Serializable{
 	private String titulo;
 	private String area;
 	private String descricao;
+	private int avaliacao;
 
 	private List<UsuarioDTO> contribuidores = new ArrayList<>();
 
 	public TrabalhoDTO() {
 	}
 	
-	public TrabalhoDTO(Long id, String titulo, String area, String descricao, Postagem postagem) {
+	public TrabalhoDTO(Long id, String titulo, String area, String descricao, int avaliacao, Postagem postagem) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.area = area;
 		this.descricao = descricao;
+		this.setAvaliacao(avaliacao);
 	}
 
 
@@ -71,6 +73,14 @@ public class TrabalhoDTO implements Serializable{
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public int getAvaliacao() {
+		return avaliacao;
+	}
+
+	public void setAvaliacao(int avaliacao) {
+		this.avaliacao = avaliacao;
 	}
 
 	public List<UsuarioDTO> getContribuidores() {
