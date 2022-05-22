@@ -2,7 +2,6 @@ package com.projetotcc.papertree.controllers;
 
 import java.net.URI;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +31,12 @@ public class UsuarioController {
 	@GetMapping
 	public ResponseEntity<List<UsuarioDTO>> findAll(){
 		List<UsuarioDTO> list = service.findAll();
+		return ResponseEntity.ok().body(list);
+	}
+	
+	@GetMapping("/search/{str}")
+	public ResponseEntity<List<UsuarioDTO>> findUsersBySplitNameOrRegister(@PathVariable("str") String str){
+		List<UsuarioDTO> list = service.findUsersBySplitNameOrRegister(str);
 		return ResponseEntity.ok().body(list);
 	}
 	

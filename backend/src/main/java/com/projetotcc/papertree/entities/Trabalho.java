@@ -30,6 +30,7 @@ public class Trabalho implements Serializable {
 	private String titulo;
 	private String area;
 	private String descricao;
+	private int avaliacao;
 	
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToMany
@@ -41,12 +42,13 @@ public class Trabalho implements Serializable {
 	public Trabalho() {
 	}
 	
-	public Trabalho(Long id, String titulo, String area, String descricao) {
+	public Trabalho(Long id, String titulo, String area, String descricao, int avaliacao) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.area = area;
 		this.descricao = descricao;
+		this.avaliacao = avaliacao;
 	}
 	
 	public Long getId() {
@@ -79,6 +81,14 @@ public class Trabalho implements Serializable {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public int getAvaliacao() {
+		return avaliacao;
+	}
+
+	public void setAvaliacao(int avaliacao) {
+		this.avaliacao = avaliacao;
 	}
 
 	public List<Usuario> getContribuidores() {
