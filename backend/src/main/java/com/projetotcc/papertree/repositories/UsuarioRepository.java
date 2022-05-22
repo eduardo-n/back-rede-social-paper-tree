@@ -1,5 +1,7 @@
 package com.projetotcc.papertree.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -13,7 +15,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	@Query("SELECT u FROM Usuario u where u.email = ?1")
 	Usuario findUsersWithEmail(String email);
 	
-	@Query("SELECT u FROM Usuario u where u.tipoContribuidor != 1 AND UPPER(u.nome) LIKE %?1% OR u.matricula LIKE %?1%")
+	@Query("SELECT u FROM Usuario u where u.tipoContribuidor != 0 AND UPPER(u.nome) LIKE %?1% OR u.matricula LIKE %?1%")
 	List<Usuario> findUsersBySplitNameOrRegister(String str);
 	
 }

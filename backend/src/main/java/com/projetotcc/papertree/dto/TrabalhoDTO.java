@@ -29,7 +29,7 @@ public class TrabalhoDTO implements Serializable{
 		this.titulo = titulo;
 		this.area = area;
 		this.descricao = descricao;
-		this.setAvaliacao(avaliacao);
+		this.avaliacao = avaliacao;
 	}
 
 
