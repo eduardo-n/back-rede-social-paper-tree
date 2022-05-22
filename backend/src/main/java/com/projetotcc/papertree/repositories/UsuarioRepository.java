@@ -15,7 +15,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	@Query("SELECT u FROM Usuario u where u.email = ?1")
 	Usuario findUsersWithEmail(String email);
 	
-	@Query("SELECT u FROM Usuario u where UPPER(u.nome) LIKE %?1% OR u.matricula LIKE %?1%")
+	@Query("SELECT u FROM Usuario u where u.tipoContribuidor != 1 AND UPPER(u.nome) LIKE %?1% OR u.matricula LIKE %?1%")
 	List<Usuario> findUsersBySplitNameOrRegister(String str);
 	
 }
