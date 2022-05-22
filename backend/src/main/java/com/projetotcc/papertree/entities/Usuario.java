@@ -1,15 +1,36 @@
 package com.projetotcc.papertree.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity(name = "Usuario")
+@Table(name = "tb_usuario")
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String nome;
 	private String email;
 	private String cpf;
@@ -17,15 +38,30 @@ public class Usuario implements Serializable {
 	private String curso;
 	private String senha;
 	private Date dataIngresso;
-	private Boolean professor;
-	private Set<Trabalho> trabalhosSalvos = new HashSet<>();
-	private Set<Notificacao> notificacoes = new HashSet<>();
+	private TipoContribuidor tipoContribuidor;
+
+	@JsonIgnore
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@ManyToMany
+    @JoinTable(name = "tb_usuario_postagem_salva",
+        joinColumns = @JoinColumn(name = "usuario_fk"),
+        inverseJoinColumns = @JoinColumn(name = "postagem_salva_fk"))
+	private List<Postagem> postagensSalvas = new ArrayList<>();
+
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(
+	        mappedBy = "usuario",
+	        cascade = CascadeType.ALL,
+	        orphanRemoval = true
+	    )
+    private List<UsuarioNotificacao> usuarioNotificacao = new ArrayList<UsuarioNotificacao>();
 	
 	public Usuario() {		
 	}
 
 	public Usuario(Long id, String nome, String email, String cpf, int matricula, String curso, String senha,
-			Date dataIngresso, Boolean professor) {
+			Date dataIngresso, TipoContribuidor tipoContribuidor,
+			List<UsuarioNotificacao> usuarioNotificacao) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -35,10 +71,9 @@ public class Usuario implements Serializable {
 		this.curso = curso;
 		this.senha = senha;
 		this.dataIngresso = dataIngresso;
-		this.professor = professor;
+		this.tipoContribuidor = tipoContribuidor;
+		this.usuarioNotificacao = usuarioNotificacao;
 	}
-
-	
 
 	public Long getId() {
 		return id;
@@ -71,7 +106,6 @@ public class Usuario implements Serializable {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-
 	public int getMatricula() {
 		return matricula;
 	}
@@ -104,20 +138,16 @@ public class Usuario implements Serializable {
 		this.dataIngresso = dataIngresso;
 	}
 
-	public Boolean getProfessor() {
-		return professor;
+	public TipoContribuidor getTipoContribuidor() {
+		return tipoContribuidor;
 	}
 
-	public void setProfessor(Boolean professor) {
-		this.professor = professor;
+	public void setTipoContribuidor(TipoContribuidor tipoContribuidor) {
+		this.tipoContribuidor = tipoContribuidor;
 	}
-
-	public Set<Trabalho> getTrabalhosSalvos() {
-		return trabalhosSalvos;
-	}
-
-	public Set<Notificacao> getNotificacoes() {
-		return notificacoes;
+	
+	public List<Postagem> getPostagensSalvas() {
+		return postagensSalvas;
 	}
 
 	@Override

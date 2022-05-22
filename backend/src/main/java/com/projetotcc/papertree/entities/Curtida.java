@@ -3,12 +3,36 @@ package com.projetotcc.papertree.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tb_curtida")
 public class Curtida implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@OneToOne
+    @JoinColumn(name ="usuario_fk")
 	private Usuario autor;
+	
+	@ManyToOne
+	@JoinColumn(name = "comentario_fk")
+	private Comentario comentario;
+	
+	@ManyToOne
+	@JoinColumn(name = "postagem_fk")
+	private Postagem postagem;
 	
 	public Curtida() {
 	}
