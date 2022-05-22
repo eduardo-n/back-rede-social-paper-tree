@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import com.projetotcc.papertree.entities.Postagem;
 import com.projetotcc.papertree.entities.Trabalho;
-import com.projetotcc.papertree.entities.Usuario;
 
 public class TrabalhoDTO implements Serializable{
 	

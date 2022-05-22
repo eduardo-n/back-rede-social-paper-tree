@@ -16,7 +16,7 @@ public class SendEmailService {
     public int sendEmail(String email){
        try {
             Random random = new Random();
-            int token = random.nextInt(10000,99999);
+            int token = 1500;
             SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
             simpleMailMessage.setFrom("vitinhopaivinha@gmail.com");
             simpleMailMessage.setTo(email);
