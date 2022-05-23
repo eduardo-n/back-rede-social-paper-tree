@@ -39,6 +39,7 @@ public class TrabalhoDTO implements Serializable{
 		titulo = entity.getTitulo();
 		area = entity.getArea();
 		descricao = entity.getDescricao();
+		avaliacao = entity.getAvaliacao();
 		contribuidores = entity.getContribuidores().stream().map(x -> new UsuarioDTO(x)).collect(Collectors.toList());
 	}
 
