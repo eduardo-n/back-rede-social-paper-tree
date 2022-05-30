@@ -22,26 +22,24 @@ import org.hibernate.annotations.LazyCollectionOption;
 public class Trabalho implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String titulo;
 	private String area;
 	private String descricao;
 	private int avaliacao;
-	
+
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToMany
-	@JoinTable(name = "tb_trabalho_contribuidores",
-		joinColumns = @JoinColumn(name = "trabalho_fk"),
-		inverseJoinColumns = @JoinColumn(name = "contribuidores_fk"))
+	@JoinTable(name = "tb_trabalho_contribuidores", joinColumns = @JoinColumn(name = "trabalho_fk"), inverseJoinColumns = @JoinColumn(name = "contribuidores_fk"))
 	private List<Usuario> contribuidores = new ArrayList<>();
-	
+
 	public Trabalho() {
 	}
-	
+
 	public Trabalho(Long id, String titulo, String area, String descricao, int avaliacao) {
 		super();
 		this.id = id;
@@ -50,7 +48,7 @@ public class Trabalho implements Serializable {
 		this.descricao = descricao;
 		this.avaliacao = avaliacao;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
