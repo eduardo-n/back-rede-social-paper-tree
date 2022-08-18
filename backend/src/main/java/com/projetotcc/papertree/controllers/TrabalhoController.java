@@ -8,7 +8,10 @@ import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.UUID;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,23 +37,6 @@ public class TrabalhoController {
 
     @GetMapping
     public ResponseEntity<List<TrabalhoDTO>> findAll(){
-
-        /*
-        TrabalhoDTO trabalhoDtoTeste = new TrabalhoDTO();
-        Usuario usuarioTeste = new Usuario();
-
-        usuarioTeste.setCpf("123456");
-        usuarioTeste.setNome("Rachel Reis");
-        usuarioTeste.setEmail("rachel@ufv.br");
-
-        trabalhoDtoTeste.setOrientador(usuarioTeste);
-
-        List<TrabalhoDTO> list = new ArrayList();
-        list.add(trabalhoDtoTeste);
-        list.add(trabalhoDtoTeste);
-        list.add(trabalhoDtoTeste);
-        */
-
 
         List<TrabalhoDTO> listTrabalho = service.findAll();
         return ResponseEntity.ok().body(listTrabalho);
@@ -91,10 +77,20 @@ public class TrabalhoController {
     	
      }
     
-    private String extrairExtensao(String nomeArquivo) {
-    	int i = nomeArquivo.lastIndexOf(".");
-    	return nomeArquivo.substring(i+1);
-    }
+//    @GetMapping
+//    public ResponseEntity<List<TrabalhoDTO>> findPdf(@RequestBody TrabalhoDTO dto){
+//    	MultipartFile multipartFile = new MockMultipartFile("sourceFile.tmp", "Hello World".getBytes());
+//    	
+//    	
+//    	MultipartFile pdf = service.findPdf();
+//        return ResponseEntity.ok().body(listTrabalho);
+//    }
     
+    @GetMapping("/loadPdf")
+    public ResponseEntity<Resource> getFile(@RequestBody TrabalhoDTO dto) {
+      Resource file = service.loadPdf(dto.getId().toString());
+      return ResponseEntity.ok()
+    	        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
+    }
    
 }

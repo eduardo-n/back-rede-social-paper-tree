@@ -2,6 +2,7 @@ package com.projetotcc.papertree.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,7 +32,7 @@ public class Trabalho implements Serializable {
 	private String area;
 	private String descricao;
 	private int avaliacao;
-
+	private Date dataCriacao;
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToMany
 	@JoinTable(name = "tb_trabalho_contribuidores", joinColumns = @JoinColumn(name = "trabalho_fk"), inverseJoinColumns = @JoinColumn(name = "contribuidores_fk"))
@@ -40,13 +41,14 @@ public class Trabalho implements Serializable {
 	public Trabalho() {
 	}
 
-	public Trabalho(Long id, String titulo, String area, String descricao, int avaliacao) {
+	public Trabalho(Long id, String titulo, String area, String descricao, int avaliacao, Date dataCriacao) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.area = area;
 		this.descricao = descricao;
 		this.avaliacao = avaliacao;
+		this.dataCriacao = dataCriacao;
 	}
 
 	public Long getId() {
@@ -87,6 +89,14 @@ public class Trabalho implements Serializable {
 
 	public void setAvaliacao(int avaliacao) {
 		this.avaliacao = avaliacao;
+	}
+	
+	public Date getDataCriacao() {
+		return dataCriacao;
+	}
+
+	public void setDataCriacao(Date dataCriacao) {
+		this.dataCriacao = dataCriacao;
 	}
 
 	public List<Usuario> getContribuidores() {

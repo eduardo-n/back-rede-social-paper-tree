@@ -2,6 +2,7 @@ package com.projetotcc.papertree.dto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,19 +18,21 @@ public class TrabalhoDTO implements Serializable{
 	private String area;
 	private String descricao;
 	private int avaliacao;
+	private Date dataCriacao;
 
 	private List<UsuarioDTO> contribuidores = new ArrayList<>();
 
 	public TrabalhoDTO() {
 	}
 	
-	public TrabalhoDTO(Long id, String titulo, String area, String descricao, int avaliacao, Postagem postagem) {
+	public TrabalhoDTO(Long id, String titulo, String area, String descricao, int avaliacao, Postagem postagem, Date dataCriacao) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.area = area;
 		this.descricao = descricao;
 		this.avaliacao = avaliacao;
+		this.setDataCriacao(dataCriacao);
 	}
 
 
@@ -83,6 +86,14 @@ public class TrabalhoDTO implements Serializable{
 		this.avaliacao = avaliacao;
 	}
 
+	public Date getDataCriacao() {
+		return dataCriacao;
+	}
+
+	public void setDataCriacao(Date dataCriacao) {
+		this.dataCriacao = dataCriacao;
+	}
+	
 	public List<UsuarioDTO> getContribuidores() {
 		return contribuidores;
 	}
