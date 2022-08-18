@@ -32,7 +32,7 @@ public class TrabalhoDTO implements Serializable{
 		this.area = area;
 		this.descricao = descricao;
 		this.avaliacao = avaliacao;
-		this.setDataCriacao(dataCriacao);
+		this.dataCriacao = dataCriacao;
 	}
 
 
@@ -43,6 +43,7 @@ public class TrabalhoDTO implements Serializable{
 		area = entity.getArea();
 		descricao = entity.getDescricao();
 		avaliacao = entity.getAvaliacao();
+		dataCriacao = entity.getDataCriacao();
 		contribuidores = entity.getContribuidores().stream().map(x -> new UsuarioDTO(x)).collect(Collectors.toList());
 	}
 
