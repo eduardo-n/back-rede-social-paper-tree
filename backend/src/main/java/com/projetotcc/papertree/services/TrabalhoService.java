@@ -34,6 +34,9 @@ public class TrabalhoService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private PostagemService postagemService;
+
     @Transactional
     public List<TrabalhoDTO> findAll(){
         List<Trabalho> list = repository.findAllTrabalho();
@@ -51,6 +54,8 @@ public class TrabalhoService {
         }
 
         trabalho = repository.save(trabalho);
+        postagemService.insert(trabalho);
+
         return new TrabalhoDTO(trabalho);
 
     }

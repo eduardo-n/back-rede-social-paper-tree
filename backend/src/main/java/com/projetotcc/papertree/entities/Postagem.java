@@ -38,6 +38,10 @@ public class Postagem implements Serializable{
 	public Postagem() {
 	}
 	
+	public Postagem(Trabalho trabalho) {
+		this.trabalho = trabalho;
+	}
+	
 	public Postagem(Long id, Trabalho trabalho) {
 		super();
 		this.id = id;

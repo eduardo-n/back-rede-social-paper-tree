@@ -8,7 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.projetotcc.papertree.dto.PostagemDTO;
+import com.projetotcc.papertree.dto.TrabalhoDTO;
+import com.projetotcc.papertree.dto.UsuarioDTO;
 import com.projetotcc.papertree.entities.Postagem;
+import com.projetotcc.papertree.entities.Trabalho;
+import com.projetotcc.papertree.entities.Usuario;
 import com.projetotcc.papertree.repositories.PostagemRepository;
 
 @Service
@@ -19,7 +23,17 @@ public class PostagemService {
 	
 	@Transactional
 	public List<PostagemDTO> findAll(){
-		List<Postagem> list = repository.findAll();
+		List<Postagem> list = repository.findAllPostagem();
 		return list.stream().map(x -> new PostagemDTO(x)).collect(Collectors.toList());
 	}
+	
+	@Transactional
+    public PostagemDTO insert(Trabalho trabalho){
+
+        Postagem postagem = new Postagem(trabalho);
+
+        postagem = repository.save(postagem);
+        return new PostagemDTO(postagem);
+
+    }
 }

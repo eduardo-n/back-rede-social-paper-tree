@@ -23,6 +23,11 @@ public class PostagemDTO implements Serializable{
 	public PostagemDTO() {
 	}
 
+	public PostagemDTO(Trabalho trabalho) {
+		super();
+		this.trabalho = trabalho;
+	}
+
 	public PostagemDTO(Long id, Trabalho trabalho) {
 		super();
 		this.id = id;
