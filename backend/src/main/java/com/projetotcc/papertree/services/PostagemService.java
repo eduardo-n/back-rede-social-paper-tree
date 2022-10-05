@@ -3,6 +3,7 @@ package com.projetotcc.papertree.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.projetotcc.papertree.entities.Curtida;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,4 +37,13 @@ public class PostagemService {
         return new PostagemDTO(postagem);
 
     }
+
+	@Transactional
+	public PostagemDTO updateLike(Long idPostagem, Curtida curtida){
+
+		Postagem postagem = repository.getById(idPostagem);
+		postagem = repository.save(postagem);
+		return new PostagemDTO(postagem);
+
+	}
 }

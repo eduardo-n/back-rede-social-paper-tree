@@ -1,19 +1,15 @@
 package com.projetotcc.papertree.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "tb_postagem")
@@ -28,11 +24,14 @@ public class Postagem implements Serializable{
 	@OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name ="trabalho_fk")
 	private Trabalho trabalho;
-		
-	@OneToMany(mappedBy = "postagem")
-	private List<Comentario> comentarios = new ArrayList<>();
-	
-	@OneToMany(mappedBy = "postagem")
+
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@JsonBackReference
+	@OneToMany(
+			mappedBy = "postagem",
+			cascade = CascadeType.ALL,
+			orphanRemoval = true
+	)
 	private List<Curtida> curtidas = new ArrayList<>();
 	
 	public Postagem() {
@@ -62,10 +61,6 @@ public class Postagem implements Serializable{
 
 	public void setTrabalho(Trabalho trabalho) {
 		this.trabalho = trabalho;
-	}
-
-	public List<Comentario> getComentarios() {
-		return comentarios;
 	}
 
 	public List<Curtida> getCurtidas() {

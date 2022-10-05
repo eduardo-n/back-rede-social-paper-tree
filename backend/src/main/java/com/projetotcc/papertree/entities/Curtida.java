@@ -1,16 +1,11 @@
 package com.projetotcc.papertree.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "tb_curtida")
@@ -26,21 +21,19 @@ public class Curtida implements Serializable{
     @JoinColumn(name ="usuario_fk")
 	private Usuario autor;
 	
-	@ManyToOne
-	@JoinColumn(name = "comentario_fk")
-	private Comentario comentario;
-	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "postagem_fk")
+	@JsonBackReference
 	private Postagem postagem;
 	
 	public Curtida() {
 	}
 	
-	public Curtida(Long id, Usuario autor) {
+	public Curtida(Long id, Usuario autor, Postagem postagem) {
 		super();
 		this.id = id;
 		this.autor = autor;
+		this.postagem = postagem;
 	}
 
 	public Long getId() {
@@ -57,6 +50,10 @@ public class Curtida implements Serializable{
 
 	public void setAutor(Usuario autor) {
 		this.autor = autor;
+	}
+
+	public Postagem getPostagem() {
+		return postagem;
 	}
 
 	@Override

@@ -11,4 +11,7 @@ public interface PostagemRepository extends JpaRepository<Postagem, Long> {
     @Query("SELECT p FROM Postagem p")
     List<Postagem> findAllPostagem();
 
+//    @Query("UPDATE Postagem set curtidas ''")
+//    List<Postagem> findAllPostagem();
+
 }
