@@ -28,7 +28,7 @@ public class CurtidaController {
 	}
 
 	@PostMapping("/inserir")
-	public ResponseEntity<CurtidaDTO> insertLike(@RequestBody CurtidaDTO dto){
+	public ResponseEntity<CurtidaDTO> inserirCurtida(@RequestBody CurtidaDTO dto){
 		dto = service.insert(dto);
 		if(dto == null) {
 			return ResponseEntity.badRequest().body(null);
@@ -37,6 +37,18 @@ public class CurtidaController {
 			URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 					.buildAndExpand(dto.getId()).toUri();
 			return ResponseEntity.created(uri).body(dto);
+		}
+	}
+
+	@DeleteMapping("/delete")
+	public ResponseEntity<CurtidaDTO> deletarCurtida(@RequestBody CurtidaDTO dto){
+		Curtida curtida = service.buscarCurtida(dto.getId());
+		service.delete(curtida);
+		if(dto == null) {
+			return ResponseEntity.badRequest().body(null);
+		}
+		else{
+			return ResponseEntity.ok().body(dto);
 		}
 	}
 }

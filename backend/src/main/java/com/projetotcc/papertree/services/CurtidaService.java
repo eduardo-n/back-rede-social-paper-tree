@@ -1,6 +1,7 @@
 package com.projetotcc.papertree.services;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import com.projetotcc.papertree.dto.UsuarioDTO;
@@ -36,5 +37,15 @@ public class CurtidaService {
 
 		curtida = repository.save(curtida);
 		return new CurtidaDTO(curtida);
+	}
+
+	@Transactional
+	public void delete (Curtida curtida){
+		repository.delete(curtida);
+	}
+
+	@Transactional
+	public Curtida buscarCurtida(Long id){
+		return repository.buscarCurtida(id);
 	}
 }
