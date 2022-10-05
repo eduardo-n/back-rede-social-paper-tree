@@ -40,15 +40,9 @@ public class CurtidaController {
 		}
 	}
 
-	@DeleteMapping("/delete")
-	public ResponseEntity<CurtidaDTO> deletarCurtida(@RequestBody CurtidaDTO dto){
-		Curtida curtida = service.buscarCurtida(dto.getId());
+	@DeleteMapping("/delete/{id}")
+	public void deletarCurtida(@PathVariable Long id){
+		Curtida curtida = service.buscarCurtida(id);
 		service.delete(curtida);
-		if(dto == null) {
-			return ResponseEntity.badRequest().body(null);
-		}
-		else{
-			return ResponseEntity.ok().body(dto);
-		}
 	}
 }
