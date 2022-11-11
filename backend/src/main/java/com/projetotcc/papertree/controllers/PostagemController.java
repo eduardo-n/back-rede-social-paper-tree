@@ -1,10 +1,18 @@
 package com.projetotcc.papertree.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
+import com.projetotcc.papertree.dto.TrabalhoDTO;
+import com.projetotcc.papertree.dto.UsuarioDTO;
+import com.projetotcc.papertree.entities.Usuario;
+import com.projetotcc.papertree.services.TrabalhoService;
+import com.projetotcc.papertree.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,6 +29,12 @@ public class PostagemController {
 	@GetMapping
 	public ResponseEntity<List<PostagemDTO>> findAll(){
 		List<PostagemDTO> list = service.findAll();
+		return ResponseEntity.ok().body(list);
+	}
+
+	@GetMapping("/postsUser/{id}")
+	public ResponseEntity<List<PostagemDTO>> findPostByUser(@PathVariable("id") Long id){
+		List<PostagemDTO> list = service.findPostByUser(id);
 		return ResponseEntity.ok().body(list);
 	}
 	

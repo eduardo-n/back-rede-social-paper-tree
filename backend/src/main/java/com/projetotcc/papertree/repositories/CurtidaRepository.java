@@ -5,7 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.projetotcc.papertree.entities.Curtida;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface CurtidaRepository extends JpaRepository<Curtida, Long>{
     @Query("SELECT c FROM Curtida c where c.id = ?1")
     Curtida buscarCurtida(Long id);

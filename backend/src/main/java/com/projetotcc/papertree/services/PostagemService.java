@@ -27,6 +27,12 @@ public class PostagemService {
 		List<Postagem> list = repository.findAllPostagem();
 		return list.stream().map(x -> new PostagemDTO(x)).collect(Collectors.toList());
 	}
+
+	@Transactional
+	public List<PostagemDTO> findPostByUser(Long id){
+		List<Postagem> list = repository.findPostByUser(id);
+		return list.stream().map(x -> new PostagemDTO(x)).collect(Collectors.toList());
+	}
 	
 	@Transactional
     public PostagemDTO insert(Trabalho trabalho){
