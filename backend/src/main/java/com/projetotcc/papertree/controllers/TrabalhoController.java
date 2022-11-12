@@ -58,8 +58,8 @@ public class TrabalhoController {
     @PostMapping("/pdf")
     public ResponseEntity<String> uploadPdf(@RequestParam("file") MultipartFile file){
     	
-    	var path = "C:/PaperTree/TCC";
-    	File f = new File(path);  
+    	var path = "../../front-rede-social-paper-tree/frontend/src/assets/trabalhos-inseridos";
+    	File f = new File(path);
     	
     	if (!f.exists()) {
     		boolean diretorio = f.mkdirs();
