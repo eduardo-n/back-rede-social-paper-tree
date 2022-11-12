@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
+@Table(name = "tb_trabalhoSalvo")
 public class TrabalhoSalvo implements Serializable {
 
     private static final long serialVersionUID = 1L;

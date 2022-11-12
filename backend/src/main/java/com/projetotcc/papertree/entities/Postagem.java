@@ -1,7 +1,6 @@
 package com.projetotcc.papertree.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.projetotcc.papertree.dto.TrabalhoSalvoDTO;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
