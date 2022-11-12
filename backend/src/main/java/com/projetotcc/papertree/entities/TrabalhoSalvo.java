@@ -1,14 +1,24 @@
 package com.projetotcc.papertree.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 public class TrabalhoSalvo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @OneToOne
+    @JoinColumn(name ="usuario_fk")
     private Usuario autor;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "postagem_fk")
+    @JsonBackReference
     private Postagem postagem;
 
     public TrabalhoSalvo() {
