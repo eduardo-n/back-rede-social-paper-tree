@@ -42,7 +42,13 @@ public class TrabalhoSalvoController {
 
     @DeleteMapping("/delete/{id}")
     public void deletarTrabalhoSalvo(@PathVariable Long id){
-        TrabalhoSalvo trabalhoSalvo = service.buscarCurtida(id);
+        TrabalhoSalvo trabalhoSalvo = service.buscarTrabalhoSalvo(id);
         service.delete(trabalhoSalvo);
+    }
+
+    @DeleteMapping("/usuario/{id}")
+    public ResponseEntity<List<TrabalhoSalvoDTO>> encontrarTrabalhosSalvosPorUsuario(@PathVariable Long id){
+        List<TrabalhoSalvoDTO> trabalhoSalvo = service.encontrarTrabalhosSalvosPorUsuario(id);
+        return ResponseEntity.ok().body(trabalhoSalvo);
     }
 }

@@ -22,7 +22,7 @@ public class TrabalhoSalvoService {
     @Transactional
     public List<TrabalhoSalvoDTO> findAll(){
         List<TrabalhoSalvo> list = repository.findAll();
-        return list.stream().map(x -> new TrabalhoSalvoDTO(x)).collect(Collectors.toList());
+        return list.stream().map(TrabalhoSalvoDTO::new).collect(Collectors.toList());
     }
 
     @Transactional
@@ -39,7 +39,13 @@ public class TrabalhoSalvoService {
     }
 
     @Transactional
-    public TrabalhoSalvo buscarCurtida(Long id){
+    public TrabalhoSalvo buscarTrabalhoSalvo(Long id){
         return repository.buscarTrabalhoSalvo(id);
+    }
+
+    @Transactional
+    public List<TrabalhoSalvoDTO> encontrarTrabalhosSalvosPorUsuario(Long id){
+        List<TrabalhoSalvo> list = repository.buscarTrabalhosSalvosPorUsuario(id);
+        return list.stream().map(TrabalhoSalvoDTO::new).collect(Collectors.toList());
     }
 }
