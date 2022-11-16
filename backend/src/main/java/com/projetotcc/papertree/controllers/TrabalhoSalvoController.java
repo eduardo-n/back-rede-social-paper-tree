@@ -45,10 +45,4 @@ public class TrabalhoSalvoController {
         TrabalhoSalvo trabalhoSalvo = service.buscarTrabalhoSalvo(id);
         service.delete(trabalhoSalvo);
     }
-
-    @GetMapping("/usuario/{id}")
-    public ResponseEntity<List<TrabalhoSalvoDTO>> encontrarTrabalhosSalvosPorUsuario(@PathVariable Long id){
-        List<TrabalhoSalvoDTO> trabalhoSalvo = service.encontrarTrabalhosSalvosPorUsuario(id);
-        return ResponseEntity.ok().body(trabalhoSalvo);
-    }
 }

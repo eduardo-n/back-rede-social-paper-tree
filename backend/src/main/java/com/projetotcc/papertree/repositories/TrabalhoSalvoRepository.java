@@ -14,7 +14,4 @@ public interface TrabalhoSalvoRepository extends JpaRepository<TrabalhoSalvo, Lo
     @Query("SELECT ts FROM TrabalhoSalvo ts where ts.id = ?1")
     TrabalhoSalvo buscarTrabalhoSalvo(Long id);
 
-    @Query("SELECT ts FROM TrabalhoSalvo as ts JOIN Usuario as u where u.id = ?1")
-    List<TrabalhoSalvo> buscarTrabalhosSalvosPorUsuario(Long id);
-
 }

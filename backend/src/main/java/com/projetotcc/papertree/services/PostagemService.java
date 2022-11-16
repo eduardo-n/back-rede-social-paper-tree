@@ -3,6 +3,7 @@ package com.projetotcc.papertree.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.projetotcc.papertree.dto.TrabalhoSalvoDTO;
 import com.projetotcc.papertree.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,12 @@ public class PostagemService {
 	public List<PostagemDTO> findPostByUser(Long id){
 		List<Postagem> list = repository.findPostByUser(id);
 		return list.stream().map(x -> new PostagemDTO(x)).collect(Collectors.toList());
+	}
+
+	@Transactional
+	public List<PostagemDTO> encontrarPostagemSalvaPorUsuario(Long id){
+		List<Postagem> list = repository.buscarPostagemSalvaPorUsuario(id);
+		return list.stream().map(PostagemDTO::new).collect(Collectors.toList());
 	}
 	
 	@Transactional

@@ -42,10 +42,4 @@ public class TrabalhoSalvoService {
     public TrabalhoSalvo buscarTrabalhoSalvo(Long id){
         return repository.buscarTrabalhoSalvo(id);
     }
-
-    @Transactional
-    public List<TrabalhoSalvoDTO> encontrarTrabalhosSalvosPorUsuario(Long id){
-        List<TrabalhoSalvo> list = repository.buscarTrabalhosSalvosPorUsuario(id);
-        return list.stream().map(TrabalhoSalvoDTO::new).collect(Collectors.toList());
-    }
 }
