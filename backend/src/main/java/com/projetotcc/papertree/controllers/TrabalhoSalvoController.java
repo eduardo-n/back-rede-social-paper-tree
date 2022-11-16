@@ -15,7 +15,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/trabalhoSalvo")
+@RequestMapping(value = "/trabalhosalvo")
 public class TrabalhoSalvoController {
 
     @Autowired
