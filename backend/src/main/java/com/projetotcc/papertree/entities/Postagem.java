@@ -1,6 +1,7 @@
 package com.projetotcc.papertree.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -26,7 +27,7 @@ public class Postagem implements Serializable{
 	private Trabalho trabalho;
 
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@JsonBackReference
+	@JsonManagedReference
 	@OneToMany(
 			mappedBy = "postagem",
 			cascade = CascadeType.ALL,
@@ -35,7 +36,7 @@ public class Postagem implements Serializable{
 	private List<Curtida> curtidas = new ArrayList<>();
 
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@JsonBackReference
+	@JsonManagedReference
 	@OneToMany(
 			mappedBy = "postagem",
 			cascade = CascadeType.ALL,
