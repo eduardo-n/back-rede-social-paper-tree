@@ -38,7 +38,8 @@ public class PostagemDTO implements Serializable{
 		super();
 		this.id = entity.getId();
 		this.trabalho = entity.getTrabalho();
-		curtidas = entity.getCurtidas().stream().map(x -> new CurtidaDTO(x)).collect(Collectors.toList());
+		curtidas = entity.getCurtidas().stream().map(CurtidaDTO::new).collect(Collectors.toList());
+		trabalhosSalvos = entity.getTrabalhosSalvos().stream().map(TrabalhoSalvoDTO::new).collect(Collectors.toList());
 	}
 	
 	public Long getId() {
