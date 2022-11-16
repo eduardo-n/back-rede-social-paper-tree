@@ -46,7 +46,7 @@ public class TrabalhoSalvoController {
         service.delete(trabalhoSalvo);
     }
 
-    @DeleteMapping("/usuario/{id}")
+    @GetMapping("/usuario/{id}")
     public ResponseEntity<List<TrabalhoSalvoDTO>> encontrarTrabalhosSalvosPorUsuario(@PathVariable Long id){
         List<TrabalhoSalvoDTO> trabalhoSalvo = service.encontrarTrabalhosSalvosPorUsuario(id);
         return ResponseEntity.ok().body(trabalhoSalvo);
