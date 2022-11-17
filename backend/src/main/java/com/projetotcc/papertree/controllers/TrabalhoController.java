@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -78,21 +79,29 @@ public class TrabalhoController {
     	}
     	
      }
-    
-//    @GetMapping
-//    public ResponseEntity<List<TrabalhoDTO>> findPdf(@RequestBody TrabalhoDTO dto){
-//    	MultipartFile multipartFile = new MockMultipartFile("sourceFile.tmp", "Hello World".getBytes());
-//    	
-//    	
-//    	MultipartFile pdf = service.findPdf();
-//        return ResponseEntity.ok().body(listTrabalho);
-//    }
-    
-    @GetMapping("/loadPdf")
-    public ResponseEntity<Resource> getFile(@RequestBody TrabalhoDTO dto) {
-      Resource file = service.loadPdf(dto.getId().toString());
-      return ResponseEntity.ok()
-    	        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
+
+    @PostMapping("/imagem")
+    public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile imagem){
+
+        var path = "../../front-rede-social-paper-tree/frontend/src/assets/imagem-trabalho";
+        File f = new File(path);
+
+        if (!f.exists()) {
+            boolean diretorio = f.mkdirs();
+            if(!diretorio) {
+                return new ResponseEntity<>( "{\"mensagem\": \"Erro ao criar diretorio\"}",HttpStatus.BAD_REQUEST);
+            }
+        }
+        String[] type = Objects.requireNonNull(imagem.getContentType()).split("/");
+        var caminho = path + "/" + nomePdf + "." + type[1];
+
+        try {
+            Files.copy(imagem.getInputStream(), Path.of(caminho), StandardCopyOption.REPLACE_EXISTING);
+            return new ResponseEntity<>( "{\"mensagem\": \"Arquivo carregado com sucesso!\"}",HttpStatus.OK);
+        }catch (Exception e) {
+            return new ResponseEntity<>( "{\"mensagem\": \"Erro ao carregar arquivo\"}",HttpStatus.BAD_REQUEST);
+        }
+
     }
    
 }
