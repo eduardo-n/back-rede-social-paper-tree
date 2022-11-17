@@ -17,6 +17,8 @@ public class PostagemDTO implements Serializable{
 	private Trabalho trabalho;
 	
 	private List<CurtidaDTO> curtidas = new ArrayList<>();
+
+	private List<TrabalhoSalvoDTO> trabalhosSalvos = new ArrayList<>();
 	
 	public PostagemDTO() {
 	}
@@ -36,7 +38,8 @@ public class PostagemDTO implements Serializable{
 		super();
 		this.id = entity.getId();
 		this.trabalho = entity.getTrabalho();
-		curtidas = entity.getCurtidas().stream().map(x -> new CurtidaDTO(x)).collect(Collectors.toList());
+		curtidas = entity.getCurtidas().stream().map(CurtidaDTO::new).collect(Collectors.toList());
+		trabalhosSalvos = entity.getTrabalhosSalvos().stream().map(TrabalhoSalvoDTO::new).collect(Collectors.toList());
 	}
 	
 	public Long getId() {
@@ -57,6 +60,10 @@ public class PostagemDTO implements Serializable{
 
 	public List<CurtidaDTO> getCurtidas() {
 		return curtidas;
+	}
+
+	public List<TrabalhoSalvoDTO> getTrabalhosSalvos() {
+		return trabalhosSalvos;
 	}
 	
 }

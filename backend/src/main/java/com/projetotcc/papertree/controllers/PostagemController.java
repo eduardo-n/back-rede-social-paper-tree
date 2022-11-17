@@ -37,5 +37,11 @@ public class PostagemController {
 		List<PostagemDTO> list = service.findPostByUser(id);
 		return ResponseEntity.ok().body(list);
 	}
+
+	@GetMapping("/postagemsalvaporusuario/{id}")
+	public ResponseEntity<List<PostagemDTO>> buscarTrabalhoSalvoPorUsuario(@PathVariable("id") Long id){
+		List<PostagemDTO> list = service.encontrarPostagemSalvaPorUsuario(id);
+		return ResponseEntity.ok().body(list);
+	}
 	
 }
