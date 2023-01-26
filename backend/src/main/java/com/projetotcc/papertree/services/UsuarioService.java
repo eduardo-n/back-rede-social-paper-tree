@@ -60,4 +60,18 @@ public class UsuarioService {
 		}
 		
 	}
+
+	@Transactional
+	public UsuarioDTO update(UsuarioDTO dto){
+
+		Usuario usuarioEmail = repository.findUsersWithEmail(dto.getEmail());
+		if(usuarioEmail == null) {
+			Usuario usuario = repository.updatePasswordUser(usuarioEmail.getSenha(), usuarioEmail.getEmail());
+			return new UsuarioDTO(usuario);
+		}
+		else {
+			return null;
+		}
+
+	}
 }
