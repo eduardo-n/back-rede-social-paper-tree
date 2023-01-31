@@ -20,7 +20,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	@Query("SELECT u FROM Usuario u where u.tipoContribuidor != 1 AND UPPER(u.nome) LIKE %?1% OR u.matricula LIKE %?1%")
 	List<Usuario> findUsersBySplitNameOrRegister(String str);
 
-	@Query("Update Usuario set senha = ?1 where u.email = ?2")
+	@Query("Update Usuario set senha = ?1 where email = ?2")
 	Usuario updatePasswordUser(String senha, String email);
 	
 }
