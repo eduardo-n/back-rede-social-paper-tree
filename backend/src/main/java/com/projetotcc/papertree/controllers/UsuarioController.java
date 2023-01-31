@@ -80,8 +80,8 @@ public class UsuarioController {
 //		dto.setEmail(emailDecodificado);
 //		dto.setSenha(senhaDecodificada);
 
-		dto = service.update(dto);
-		if(dto == null) {
+		Boolean status = service.update(dto);
+		if(!status) {
 			return ResponseEntity.badRequest().body(null);
 		}
 		else{
