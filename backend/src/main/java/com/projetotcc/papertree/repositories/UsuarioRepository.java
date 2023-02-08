@@ -3,10 +3,13 @@ package com.projetotcc.papertree.repositories;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import com.projetotcc.papertree.entities.Usuario;
 import org.springframework.stereotype.Repository;
+
+import javax.transaction.Transactional;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
@@ -19,5 +22,10 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	
 	@Query("SELECT u FROM Usuario u where u.tipoContribuidor != 1 AND UPPER(u.nome) LIKE %?1% OR u.matricula LIKE %?1%")
 	List<Usuario> findUsersBySplitNameOrRegister(String str);
+
+	@Transactional
+	@Modifying
+	@Query("Update Usuario set senha = ?1 where email = ?2")
+	void updatePasswordUser(String senha, String email);
 	
 }

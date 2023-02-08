@@ -59,26 +59,4 @@ public class TrabalhoService {
         return new TrabalhoDTO(trabalho);
 
     }
-    
-    public Resource loadPdf(String filename) {
-      try {
-        Path file = root.resolve(filename);
-        Resource resource = (Resource) new UrlResource(file.toUri());
-        if (resource.exists() || resource.isReadable()) {
-          return resource;
-        } else {
-          throw new RuntimeException("Could not read the file!");
-        }
-      } catch (MalformedURLException e) {
-        throw new RuntimeException("Error: " + e.getMessage());
-      }
-    }
-    
-    public Stream<Path> loadAllPdf() {
-        try {
-          return Files.walk(this.root, 1).filter(path -> !path.equals(this.root)).map(this.root::relativize);
-        } catch (IOException e) {
-          throw new RuntimeException("Could not load the files!");
-        }
-      }
 }

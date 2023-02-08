@@ -70,6 +70,25 @@ public class UsuarioController {
 		}
 		
 	}
+
+	@PostMapping("/alterar")
+	public ResponseEntity<UsuarioDTO> update(@RequestBody UsuarioDTO dto){
+
+//		String emailDecodificado = Util.decodeValue(dto.getEmail());
+//		String senhaDecodificada = Util.decodeValue(dto.getSenha());
+
+//		dto.setEmail(emailDecodificado);
+//		dto.setSenha(senhaDecodificada);
+
+		Boolean status = service.update(dto);
+		if(!status) {
+			return ResponseEntity.badRequest().body(null);
+		}
+		else{
+			return ResponseEntity.ok().body(dto);
+		}
+
+	}
 	
 	@PostMapping("/email/{email}")
     public int sendMail(@PathVariable("email") String email) {
