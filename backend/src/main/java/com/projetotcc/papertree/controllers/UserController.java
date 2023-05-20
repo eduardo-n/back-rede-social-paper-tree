@@ -38,13 +38,13 @@ public class UserController {
 	}
 	
 	@GetMapping("/login")
-	public ResponseEntity<Object> findUsersWithEmailAndPassword(@RequestBody UserDTO dto){
+	public ResponseEntity<Object> findUsersWithEmailAndPassword(@RequestParam (name = "email", required = true) String email, @RequestParam (name = "password", required = true) String password){
 		
-//		String decodedEmail = Util.decodeValue(dto.getEmail());
+//		String decodedEmail = Util.decodeValue(email);
 //
-//		String decodedPassword = Util.decodeValue(dto.getPassword());
+//		String decodedPassword = Util.decodeValue(password);
 		
-		User user = service.getUsersByEmailAndPassword(dto.getEmail(), dto.getPassword());
+		User user = service.getUsersByEmailAndPassword(email, password);
 		if(user == null) {
 			return ResponseEntity.badRequest().body("1");
 		}
