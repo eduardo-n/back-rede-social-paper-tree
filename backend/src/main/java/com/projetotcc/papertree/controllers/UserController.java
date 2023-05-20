@@ -40,11 +40,11 @@ public class UserController {
 	@GetMapping("/login")
 	public ResponseEntity<Object> findUsersWithEmailAndPassword(@RequestBody UserDTO dto){
 		
-		String decodedEmail = Util.decodeValue(dto.getEmail());
+//		String decodedEmail = Util.decodeValue(dto.getEmail());
+//
+//		String decodedPassword = Util.decodeValue(dto.getPassword());
 		
-		String decodedPassword = Util.decodeValue(dto.getPassword());
-		
-		User user = service.getUsersByEmailAndPassword(decodedEmail, decodedPassword);
+		User user = service.getUsersByEmailAndPassword(dto.getEmail(), dto.getPassword());
 		if(user == null) {
 			return ResponseEntity.badRequest().body("1");
 		}
