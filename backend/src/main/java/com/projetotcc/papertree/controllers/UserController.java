@@ -38,13 +38,20 @@ public class UserController {
 	}
 	
 	@GetMapping("/login")
-	public User findUsersWithEmailAndPassword(@RequestBody UserDTO dto){
+	public ResponseEntity<Object> findUsersWithEmailAndPassword(@RequestBody UserDTO dto){
 		
 		String decodedEmail = Util.decodeValue(dto.getEmail());
 		
 		String decodedPassword = Util.decodeValue(dto.getPassword());
 		
-		return service.getUsersByEmailAndPassword(decodedEmail, decodedPassword);
+		User user = service.getUsersByEmailAndPassword(decodedEmail, decodedPassword);
+		if(user == null) {
+			return ResponseEntity.badRequest().body("Usuário não encontrado");
+		}
+		else{
+
+			return ResponseEntity.ok().body(user);
+		}
 	}
 	
 	@PostMapping("/insert")
