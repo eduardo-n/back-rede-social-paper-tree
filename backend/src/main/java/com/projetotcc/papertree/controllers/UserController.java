@@ -46,10 +46,9 @@ public class UserController {
 		
 		User user = service.getUsersByEmailAndPassword(decodedEmail, decodedPassword);
 		if(user == null) {
-			return ResponseEntity.badRequest().body("Usuário não encontrado");
+			return ResponseEntity.badRequest().body("1");
 		}
 		else{
-
 			return ResponseEntity.ok().body(user);
 		}
 	}
