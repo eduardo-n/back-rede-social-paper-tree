@@ -7,19 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.projetotcc.papertree.dto.UsuarioNotificacaoDTO;
-import com.projetotcc.papertree.entities.UsuarioNotificacao;
-import com.projetotcc.papertree.repositories.UsuarioNotificacaoRepository;
+import com.projetotcc.papertree.dto.NotificationUserDTO;
+import com.projetotcc.papertree.entities.NotificationUser;
+import com.projetotcc.papertree.repositories.NotificationUserRepository;
 
 @Service
 public class UsuarioNotificacaoService {
 	
 	@Autowired
-	private UsuarioNotificacaoRepository repository;
+	private NotificationUserRepository repository;
 	
 	@Transactional
-	public List<UsuarioNotificacaoDTO> findAll(){
-		List<UsuarioNotificacao> list = repository.findAll();
-		return list.stream().map(x -> new UsuarioNotificacaoDTO(x)).collect(Collectors.toList());
+	public List<NotificationUserDTO> findAll(){
+		List<NotificationUser> list = repository.findAll();
+		return list.stream().map(NotificationUserDTO::new).collect(Collectors.toList());
 	}
 }

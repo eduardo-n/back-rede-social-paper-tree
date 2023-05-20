@@ -16,9 +16,9 @@ public class SendEmailService {
     public int sendEmail(String email){
        try {
             Random random = new Random();
-            int token = 1500;
+            int token = 1500; //TODO change to random number
             SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-            simpleMailMessage.setFrom("vitinhopaivinha@gmail.com");
+            simpleMailMessage.setFrom("vitinhopaivinha@gmail.com"); //TODO change to other email
             simpleMailMessage.setTo(email);
             simpleMailMessage.setSubject("PaperTree - confirmação de email");
             simpleMailMessage.setText(""+ token);
