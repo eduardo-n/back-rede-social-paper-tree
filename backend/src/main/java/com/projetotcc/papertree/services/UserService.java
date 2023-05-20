@@ -33,9 +33,8 @@ public class UserService {
 	}
 	
 	@Transactional
-	public User getUsersByEmailAndPassword(String email, String senha){
-		User user = new User();
-		user = (User) repository.getUsersByEmailAndPassword(email, senha);
+	public UserDTO getUsersByEmailAndPassword(String email, String senha){
+		UserDTO user = (UserDTO) repository.getUsersByEmailAndPassword(email, senha);
 		
 		if(Objects.isNull(user)) {
 			return null;

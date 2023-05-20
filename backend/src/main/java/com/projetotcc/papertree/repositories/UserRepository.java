@@ -2,6 +2,7 @@ package com.projetotcc.papertree.repositories;
 
 import java.util.List;
 
+import com.projetotcc.papertree.dto.UserDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,7 +16,7 @@ import javax.transaction.Transactional;
 public interface UserRepository extends JpaRepository<User, Long> {
 	
 	@Query("SELECT u FROM User u where u.email = ?1 AND u.password = ?2")
-	User getUsersByEmailAndPassword(String email, String password);
+	UserDTO getUsersByEmailAndPassword(String email, String password);
 	
 	@Query("SELECT u FROM User u where u.email = ?1")
 	User getUsersByEmail(String email);

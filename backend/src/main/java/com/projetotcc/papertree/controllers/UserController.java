@@ -44,7 +44,7 @@ public class UserController {
 //
 //		String decodedPassword = Util.decodeValue(password);
 		
-		User user = service.getUsersByEmailAndPassword(email, password);
+		UserDTO user = service.getUsersByEmailAndPassword(email, password);
 		if(user == null) {
 			return ResponseEntity.badRequest().body("1");
 		}
