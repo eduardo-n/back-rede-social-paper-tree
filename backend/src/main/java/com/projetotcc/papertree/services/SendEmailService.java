@@ -13,19 +13,19 @@ public class SendEmailService {
 	@Autowired
     private JavaMailSender javaMailSender;
 
-    public int sendEmail(String email){
+    public String sendEmail(String email){
        try {
             Random random = new Random();
-            int token = 1500; //TODO change to random number
+            String token = "1500"; //TODO change to random number
             SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
             simpleMailMessage.setFrom("vitinhopaivinha@gmail.com"); //TODO change to other email
             simpleMailMessage.setTo(email);
             simpleMailMessage.setSubject("PaperTree - confirmação de email");
-            simpleMailMessage.setText(""+ token);
+            simpleMailMessage.setText("Seu token de validação é: "+ token);
             javaMailSender.send(simpleMailMessage);
             return token;
         }catch (Exception e){
-        	return 0;
+        	return null;
         }
     }
 }

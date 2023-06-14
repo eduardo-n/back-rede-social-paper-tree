@@ -100,12 +100,13 @@ public class UserController {
 	}
 	
 	@PostMapping("/token/email")
-    public int sendMail(@RequestParam (name="email") String email) {
+    public ResponseEntity<Object> sendMail(@RequestBody String email) {
 		//String decodedEmail = Util.decodeValue(email);
-		int token = sendEmailService.sendEmail(email);
-		if(token != 0) 
-			return token; 
-		else return 0;
+		String token = sendEmailService.sendEmail(email);
+		if(token != null)
+			return ResponseEntity.ok().body(token);
+		else
+			return ResponseEntity.badRequest().body("Erro ao enviar email!");
     }
 
 	public boolean isAdvisor(UserDTO user){
