@@ -60,11 +60,11 @@ public class UserService {
 	}
 
 	@Transactional
-	public Boolean updatePassword(UserDTO dto){
+	public Boolean updatePassword(String email, String password){
 
-		User userEmail = repository.getUsersByEmail(dto.getEmail());
+		User userEmail = repository.getUsersByEmail(email);
 		if(userEmail != null) {
-			repository.updateUserPasswordByEmail(userEmail.getPassword(), userEmail.getEmail());
+			repository.updateUserPasswordByEmail(password, userEmail.getEmail());
 			return true;
 		}
 		else {

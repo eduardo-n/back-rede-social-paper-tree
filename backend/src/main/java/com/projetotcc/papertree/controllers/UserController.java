@@ -81,20 +81,20 @@ public class UserController {
 	}
 
 	@PostMapping("/update/password")
-	public ResponseEntity<Object> updatePassword(@RequestBody UserDTO dto){
+	public ResponseEntity<Object> updatePassword(@RequestParam (name = "email", required = true) String email, @RequestParam (name = "password", required = true) String password){
 
-//		String decodedEmail = Util.decodeValue(dto.getEmail());
-//		String decodedPassword = Util.decodeValue(dto.getSenha());
+//		String decodedEmail = Util.decodeValue(email);
+//		String decodedPassword = Util.decodeValue(password);
 
 //		dto.setEmail(decodedEmail);
 //		dto.setSenha(decodedPassword);
 
-		Boolean status = service.updatePassword(dto);
+		Boolean status = service.updatePassword(email, password);
 		if(!status) {
 			return ResponseEntity.badRequest().body("Erro ao atualizar senha!");
 		}
 		else{
-			return ResponseEntity.ok().body(dto);
+			return ResponseEntity.ok().body("Sucesso");
 		}
 
 	}
