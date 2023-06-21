@@ -80,8 +80,8 @@ public class UserController {
 		
 	}
 
-	@PutMapping("/update/password")
-	public ResponseEntity<Object> updatePassword(@RequestParam (name = "email", required = true) String email, @RequestParam (name = "password", required = true) String password){
+	@PatchMapping("/update/password")
+	public ResponseEntity<Object> updatePassword(@RequestBody UserDTO user){
 
 //		String decodedEmail = Util.decodeValue(email);
 //		String decodedPassword = Util.decodeValue(password);
@@ -89,7 +89,7 @@ public class UserController {
 //		dto.setEmail(decodedEmail);
 //		dto.setSenha(decodedPassword);
 
-		Boolean status = service.updatePassword(email, password);
+		Boolean status = service.updatePassword(user.getEmail(), user.getPassword());
 		if(!status) {
 			return ResponseEntity.badRequest().body("Erro ao atualizar senha!");
 		}
