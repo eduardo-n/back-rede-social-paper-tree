@@ -74,7 +74,7 @@ public class WorkController {
     	
      }
 
-    @PostMapping("/uploadImage")
+    @PostMapping("/image")
     public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile image){
         var path = "../../front-rede-social-paper-tree/frontend/src/assets/imagem-trabalho";
         File f = new File(path);
