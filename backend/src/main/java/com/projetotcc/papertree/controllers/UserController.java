@@ -80,7 +80,7 @@ public class UserController {
 		
 	}
 
-	@PostMapping("/update/password")
+	@PutMapping("/update/password")
 	public ResponseEntity<Object> updatePassword(@RequestParam (name = "email", required = true) String email, @RequestParam (name = "password", required = true) String password){
 
 //		String decodedEmail = Util.decodeValue(email);
