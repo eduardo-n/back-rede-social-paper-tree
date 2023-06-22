@@ -53,7 +53,7 @@ public class WorkController {
     
     @PostMapping("/pdf")
     public ResponseEntity<String> uploadPdf(@RequestParam("file") MultipartFile file){
-    	var path = "../../front-rede-social-paper-tree/frontend/src/assets/trabalhos-inseridos";
+    	var path = "../../frontend-paper-tree-v2/frontend/src/assets/trabalhos-inseridos";
     	File f = new File(path);
     	
     	if (!f.exists()) {
@@ -76,7 +76,7 @@ public class WorkController {
 
     @PostMapping("/image")
     public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile image){
-        var path = "../../front-rede-social-paper-tree/frontend/src/assets/imagem-trabalho";
+        var path = "../../frontend-paper-tree-v2/frontend/src/assets/imagem-trabalho";
         File f = new File(path);
 
         if (!f.exists()) {
